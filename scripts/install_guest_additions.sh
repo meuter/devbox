@@ -1,9 +1,10 @@
 #! /bin/bash -e
 
-read -p "Click 'Device> Install Guest Additions...' in VirtualBox (return=done)?" 
+sudo apt install -y dkms build-essential linux-headers-generic \
+                    linux-headers-$(uname -r) virtualbox-guest-additions-iso
 
 sudo mkdir -p /media/cdrom
-sudo mount /dev/cdrom /media/cdrom
+sudo mount -o loop /usr/share/virtualbox/VBoxGuestAdditions.iso /media/cdrom
 sudo /media/cdrom/VBoxLinuxAdditions.run
 sudo umount /media/cdrom
 sudo rmdir /media/cdrom
