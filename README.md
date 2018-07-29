@@ -65,5 +65,9 @@ In Windows Explorer, go to "Computer> Map Network Drive..." and use the followin
     ```
 ## Screenshots
 
-![screenshot1.png](/sreenshots/screenshot1.png?raw=true)
+### Empty desktop
+![screenshot1.png](/screenshots/screenshot1.png?raw=true)
+
+### Some applications open
+![screenshot2.png](/screenshots/screenshot2.png?raw=true)
 
