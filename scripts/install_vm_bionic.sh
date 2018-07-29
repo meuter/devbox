@@ -8,9 +8,9 @@
 ./install_urxvt.sh
 ./install_zsh.sh
 ./install_arc.sh
-./install_slim.sh
 ./install_vscode.sh
 ./install_google_chrome.sh
+./install_slim.sh
 
 reboot
 
