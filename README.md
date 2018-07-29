@@ -9,7 +9,7 @@
 | Browser          | google chrome |
 | Shell            | zsh+oh-my-zsh+bullet-train |
 | Display Manager  | slim |
-| Theme            | arc-darker |
+| Theme            | Arc-Dark |
 | Extra            | custom configs, autologin |
 
 # Install
