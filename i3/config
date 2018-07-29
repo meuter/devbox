@@ -47,25 +47,13 @@ bindsym Control+space exec rofi -show run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
+# focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
+# move windows
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -80,23 +68,6 @@ bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 # bindsym $mod+f fullscreen toggle
 bindsym F11 fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -132,22 +103,11 @@ bindsym $mod+Shift+e exec "i3-msg exit"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -156,10 +116,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# status bar
 bar {
-        #status_command i3status
         status_command ~/.config/i3/bumblebee-status/bumblebee-status -m cpu memory date time -p root.path=/ time.format="%H:%M:%S" date.format="%a, %b %d %Y" -t solarized-powerline
         font pango:Noto Mono for Powerline 12
         position top
@@ -173,20 +131,16 @@ gaps outer 0
 # wallpaper
 exec_always feh --bg-scale ~/.dotfiles/wallpapers/sunset.jpg
 
-# compton
-# exec_always compton --config ~/.config/compton/compton.conf
-
 # disable mouse focus
 focus_follows_mouse no
 
 # keyboard shortcut
 bindsym Control+Shift+t exec thunar
 bindsym Control+Shift+g exec google-chrome
-bindsym Control+Shift+o exec code
+bindsym Control+Shift+c exec code
 
 # shortcut edit config 
 bindsym Control+$mod+c exec "code ~/.dotfiles/"
-
 
 set $mode_system System (e)xit, (r)reboot, (s)hutdown
 mode "$mode_system" {
