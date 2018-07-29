@@ -1,11 +1,11 @@
 #! /bin/bash -ex
 
-default_ip="192.168.56.100"
-default_tz=$(tzselect)
+ip=${1:-$(echo "192.168.56.100")}
+tz=${2:-$(tzselect)}
 
-./config_tz.sh ${1:-$default_tz}
+./config_tz.sh $tz
 ./config_sources_list.sh
-./install_samba.sh ${1:-$default_ip}
+./install_samba.sh $ip
 ./install_guest_additions.sh
 ./install_i3_gaps.sh
 ./install_fonts.sh
