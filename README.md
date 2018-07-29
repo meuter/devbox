@@ -16,6 +16,8 @@ Custom development box mainly for C/C++ and python.
 | GTK Theme        | [Arc-Dark](https://github.com/horst3180/arc-theme) |
 | Extra            | custom configs, autologin, samba share |
 
+Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA) and [Code Path](https://www.youtube.com/channel/UCcQsDUZiK1GWDcP7BpVO_kw) for inspiring this.
+
 # Install
 
 1. install virtual box > 5.2
