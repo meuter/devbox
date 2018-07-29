@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # font awesome
-sudo apt-get install fonts-font-awesome
+sudo apt-get install -y fonts-font-awesome
 
 # powerline fonts
 git clone https://github.com/powerline/fonts.git /tmp/fonts
