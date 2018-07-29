@@ -45,9 +45,10 @@ Custom development box mainly for C/C++ and python.
 | alt+pause s  | shutdown |
 | alt+pause r  | reboot |
 | alt+pause e  | logout |
+| alt+enter    | open terminal |
 | ctrl+shift+g | open chrome |
 | ctrl+shift+o | open vscode |
-| alt+enter    | open terminal |
+| ctrl+shift+o | open thunar |
 | ctrl+alt+c   | edit devbox |
 
 ## SSH into the box:
