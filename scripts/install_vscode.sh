@@ -20,4 +20,11 @@ code --install-extension ms-python.python
 code --install-extension slevesque.vscode-hexdump
 code --install-extension adammaras.overtype
 
+# update simlink
+if [ -f ~/.config/Code/User/settings.json ]; then
+  mv ~/.config/Code/User/settings.json ~/.config/Code/User/settings.json.bak
+fi
+ln -s ~/.devbox/Code/settings.json ~/.config/Code/User/settings.json
+
+
 
