@@ -4,6 +4,7 @@
 # by default on ubuntu server
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo cp ~/.dotfiles/ubuntu/bionic.list /etc/apt/sources.list
+sudo apt-get update
 
 ./install_guest_additions.sh
 ./install_fonts.sh
