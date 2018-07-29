@@ -15,6 +15,7 @@ tz=${2:-$(tzselect)}
 ./install_google_chrome.sh
 ./install_slim.sh
 ./install_arc.sh
+./config_alternatives.sh
 
 reboot
 
