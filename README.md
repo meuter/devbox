@@ -65,5 +65,5 @@ In Windows Explorer, go to "Computer> Map Network Drive..." and use the followin
     ```
 ## Screenshots
 
-![screenshot1.png](./sreenshots/screenshot1.png)
+![screenshot1.png](/sreenshots/screenshot1.png?raw=true)
 
