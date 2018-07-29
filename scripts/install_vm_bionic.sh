@@ -10,6 +10,7 @@ sudo apt-get update
 ./install_fonts.sh
 ./install_urxvt.sh
 ./install_i3_gaps.sh
+./install_zsh.sh
 
 reboot
 

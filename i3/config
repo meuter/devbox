@@ -171,7 +171,7 @@ gaps outer 0
 # smart_gaps on
 
 # wallpaper
-exec_always feh --bg-scale ~/.config/Wallpapers/wallpaper1.jpg
+exec_always feh --bg-scale ~/.dotfiles/wallpapers/sunset.jpg
 
 # compton
 # exec_always compton --config ~/.config/compton/compton.conf
