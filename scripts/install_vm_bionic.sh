@@ -11,6 +11,7 @@
 ./install_google_chrome.sh
 ./install_slim.sh
 ./install_arc.sh
+./install_samba.sh
 
 reboot
 

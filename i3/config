@@ -137,7 +137,7 @@ focus_follows_mouse no
 # keyboard shortcut
 bindsym Control+Shift+t exec thunar
 bindsym Control+Shift+g exec google-chrome
-bindsym Control+Shift+c exec code
+bindsym Control+Shift+o exec code
 
 # shortcut edit config 
 bindsym Control+$mod+c exec "code ~/.dotfiles/"

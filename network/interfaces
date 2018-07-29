@@ -1,0 +1,12 @@
+# ifupdown has been replaced by netplan(5) on this system.  See
+# /etc/netplan for current configuration.
+# To re-enable ifupdown on this system, you can run:
+#    sudo apt install ifupdown
+
+allow-hotplug enp0s8 
+auto enp0s8 
+iface enp0s8 inet static
+address 192.168.56.100
+netmask 255.255.255.0
+network 192.168.56.100
+broadcast 192.168.56.255
