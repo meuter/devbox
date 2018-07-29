@@ -12,7 +12,10 @@ if [ -f /etc/slim.conf ]; then
   sudo mv /etc/slim.conf /etc/slim.conf.bak
 ln -s ~/.dotfiles/slim/slim.conf /etc/slim.conf
 nf
-sudo sh -c "echo -e '\n\n# autologin\ndefault_user $(whoami)\nautologin yes\n' >> /etc/slim.conf"
+sudo sh -e "echo '# autologin' >> /etc/slim.conf"
+sudo sh -e "echo 'default_user $(whoami)' >> /etc/slim.conf"
+sudo sh -e "echo 'autologin yes' >> /etc/slim.conf"
+
 
 
 
