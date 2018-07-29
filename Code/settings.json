@@ -12,4 +12,5 @@
     "gitlens.hovers.enabled": false,
     "git.enableSmartCommit": true,
     "git.autofetch": true,
+    "window.zoomLevel": 1,
 }

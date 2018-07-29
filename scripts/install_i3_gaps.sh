@@ -5,7 +5,6 @@
 ###############################################################################
 
 sudo apt install -y i3 rofi feh xinit x11-xserver-utils xclip numlockx
-mkdir -p .config/i3/
 
 ###############################################################################
 # 2/ install i3-gaps on top
