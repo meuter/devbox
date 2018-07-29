@@ -19,7 +19,7 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
                         autoconf libxcb-xrm0 libxcb-xrm-dev automake
 
 # clone the repository
-git clone --depth=1 https://www.github.com/Airblader/i3 /tmp/i3-gaps
+git clone https://www.github.com/Airblader/i3 /tmp/i3-gaps
 
 # compile & install
 cd /tmp/i3-gaps

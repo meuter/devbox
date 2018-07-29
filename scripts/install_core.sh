@@ -1,5 +1,5 @@
 #! /bin/bash -ex
 
-sudo apt install -y neofetch meld vim ccache cmake imagemagick
+sudo apt install -y neofetch clang meld vim ccache cmake imagemagick
 
 
