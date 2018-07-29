@@ -2,6 +2,7 @@
 
 ip=${1:-$(echo "192.168.56.100")}
 tz=${2:-$(tzselect)}
+reboot=${3:-reboot}
 
 ./config_tz.sh $tz
 ./config_sources_list.sh
@@ -18,5 +19,4 @@ tz=${2:-$(tzselect)}
 ./install_arc.sh
 ./config_alternatives.sh
 
-reboot
-
+$reboot
