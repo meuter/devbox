@@ -4,17 +4,17 @@ Custom development box mainly for C/C++ and python.
 
 | Component        | Choice |
 | ---------------- | ------ | 
-| Distro           | Ubuntu 18.04.01 server |
-| Desktop          | i3-gaps+rofi+bumblebee |
-| Terminal         | rxvt-unicode |
-| Dev. Editor      | vscode+extensions | |
-| Browser          | google chrome |
-| Shell            | zsh+oh-my-zsh+bullet-train |
-| Display Manager  | slim |
-| File Manager     | thunar(xfce) |
-| Theme            | Arc-Dark |
+| Distro           | [Ubuntu 18.04.01 server](https://www.ubuntu.com/download/server) |
+| Desktop          | [i3-gaps](https://github.com/Airblader/i3) with [bumblebee-status](https://github.com/tobi-wan-kenobi/bumblebee-status) and custom config |
+| Launcher         | [rofi](https://github.com/DaveDavenport/rofi) |
+| Terminal         | [rxvt-unicode](https://wiki.archlinux.org/index.php/rxvt-unicode) with custom config |
+| Dev. Editor      | [Visual Studio Code](https://code.visualstudio.com/) with some custom extensions |
+| Browser          | [Google Chrome](https://www.google.com/chrome/) |
+| Shell            | [oh-my-zsh](https://ohmyz.sh/) with [bullet-train](https://github.com/caiogondim/bullet-train.zsh) |
+| Display Manager  | [slim](https://wiki.archlinux.org/index.php/SLiM) with some [custom themes](https://github.com/adi1090x/slim_themes) |
+| File Manager     | [Thunar](https://wiki.archlinux.org/index.php/thunar) |
+| GTK Theme        | [Arc-Dark](https://github.com/horst3180/arc-theme) |
 | Extra            | custom configs, autologin, samba share |
-
 
 # Install
 
@@ -47,7 +47,8 @@ Custom development box mainly for C/C++ and python.
 | alt+pause e  | logout |
 | ctrl+shift+g | open chrome |
 | ctrl+shift+o | open vscode |
-| alt+enter | open terminal |
+| alt+enter    | open terminal |
+| ctrl+alt+c   | edit devbox |
 
 ## SSH into the box:
 
