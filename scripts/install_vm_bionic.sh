@@ -13,6 +13,7 @@ sudo apt upgrade
 ./install_urxvt.sh
 ./install_zsh.sh
 ./install_arc.sh
+./install_slim.sh
 
 reboot
 
