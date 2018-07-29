@@ -8,9 +8,9 @@ sudo apt update
 sudo apt upgrade
 
 ./install_guest_additions.sh
+./install_i3_gaps.sh
 ./install_fonts.sh
 ./install_urxvt.sh
-./install_i3_gaps.sh
 ./install_zsh.sh
 ./install_arc.sh
 
