@@ -32,12 +32,13 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 5. run main install script and follow instruction
     ```
     git clone --depth=1 https://github.com/meuter/devbox ~/.devbox/
-    cd ~/.devbox/scripts/install_vm_bionic.sh
+    cd ~/.devbox/scripts/ 
+    ./install_dev_box.sh
     ```
 
-    (will ask you to select the tz, and type in you samba password)
-6. let it reboot
-
+   The script will ask you to select the tz, and type in you samba password.
+   The install will then continue until completion and automatically reboot.
+    
 # Usage
 
 ## i3 Keyboard Shortcut:
@@ -63,9 +64,9 @@ ssh 192.168.56.100
 
 In Windows Explorer, go to "Computer> Map Network Drive..." and use the following address:
 
-    ```
-    "\\192.168.1.100\<username>"
-    ```
+```
+\\192.168.1.100\<username>
+```
 ## Screenshots
 
 ### Login Screen
