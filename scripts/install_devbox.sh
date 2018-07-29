@@ -6,6 +6,7 @@ tz=${2:-$(tzselect)}
 ./config_tz.sh $tz
 ./config_sources_list.sh
 ./install_samba.sh $ip
+./install_core.sh
 ./install_guest_additions.sh
 ./install_i3_gaps.sh
 ./install_fonts.sh
@@ -15,7 +16,6 @@ tz=${2:-$(tzselect)}
 ./install_google_chrome.sh
 ./install_slim.sh
 ./install_arc.sh
-./config_alternatives.sh
 
 reboot
 
