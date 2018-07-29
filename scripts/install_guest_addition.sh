@@ -6,7 +6,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 mkdir -p /media/cdrom
-mount /dev/cdrom/ /media/cdrom
+mount /dev/cdrom /media/cdrom
 /media/cdrom/VBoxLinuxAdditions.run
 umount /media/cdrom
 rmdir /media/cdrom
