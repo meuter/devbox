@@ -51,8 +51,9 @@ git clone git://github.com/tobi-wan-kenobi/bumblebee-status ~/.config/i3/bumbleb
 ###############################################################################
 
 if [ -f ~/.config/i3/config ]; then
-  cp ~/.config/i3/config ~/.config/i3/config.bak
-  rm -f ~/.config/i3/config
+  mv ~/.config/i3/config ~/.config/i3/config.bak
+else
+  mkdir -p ̣~/.config/i3/
 fi
 ln -s ~/.dotfiles/i3/config ~/.config/i3/config
 

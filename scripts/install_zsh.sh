@@ -12,7 +12,6 @@ wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet
 
 # update zsh simlink
 if [ -f ~/.zshrc ]; then
-  cp ~/.zshrc ~/.zshrc.bak
-  rm -f ~/.zshrc
+  mv ~/.zshrc ~/.zshrc.bak
 fi
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
