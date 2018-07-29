@@ -7,8 +7,12 @@ sudo apt install -y slim
 git clone https://github.com/adi1090x/slim_themes.git /tmp/slim_themes/
 sudo mv /tmp/slim_themes/themes/* /usr/share/slim/themes/
 
-# enable autologin for current user
-sudo sh -c "echo -e '# autologin\ndefault_user $(whoami)\nautologin yes\n' >> /etc/slim.conf"
+# symlink to config file
+if [ -f /etc/slim.conf ]; then
+  sudo mv /etc/slim.conf /etc/slim.conf.bak
+ln -s ~/.dotfiles/slim/slim.conf /etc/slim.conf
+nf
+sudo sh -c "echo -e '\n\n# autologin\ndefault_user $(whoami)\nautologin yes\n' >> /etc/slim.conf"
 
 
 
