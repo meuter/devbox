@@ -66,11 +66,11 @@ In Windows Explorer, go to "Computer> Map Network Drive..." and use the followin
 ## Screenshots
 
 ### Login Screen
-![screenshot0.png](/screenshots/screenshot0.png?raw=true)
+![screenshot0.jpg](/screenshots/screenshot0.jpg?raw=true)
 
 ### Empty desktop
-![screenshot1.png](/screenshots/screenshot1.png?raw=true)
+![screenshot1.jpg](/screenshots/screenshot1.jpg?raw=true)
 
 ### Some applications open
-![screenshot2.png](/screenshots/screenshot2.png?raw=true)
+![screenshot2.jpg](/screenshots/screenshot2.jpg?raw=true)
 
