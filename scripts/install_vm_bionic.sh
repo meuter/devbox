@@ -1,6 +1,6 @@
 #! /bin/bash -ex
 
-./config_tz.sh
+./config_tz.sh ${1:-$(tzselect)}
 ./config_sources_list.sh
 ./install_guest_additions.sh
 ./install_i3_gaps.sh
