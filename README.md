@@ -1,13 +1,16 @@
 # Custom Ubuntu Flavor:
 
-- Distro:           Ubuntu 18.04.01 server
-- Desktop:          i3-gaps+rofi
-- Terminal:         rxvt-unicode
-- Dev. Editor:      vscode
-- Browser:          google chrome
-- Shell:            zsh+oh-my-zsh+bullet-train
-- Display Manager:  slim
-- Theme:            arc-darker
+| Component        | Choice|
+| ---------------- | ----- | 
+| Distro           | Ubuntu 18.04.01 server |
+| Desktop          | i3-gaps+rofi |
+| Terminal         | rxvt-unicode |
+| Dev. Editor      | vscode |
+| Browser          | google chrome |
+| Shell            | zsh+oh-my-zsh+bullet-train |
+| Display Manager  | slim |
+| Theme            | arc-darker |
+| Extra            | custom configs, autologin |
 
 # Install
 
