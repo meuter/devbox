@@ -30,4 +30,11 @@
     git clone https://github.com/meuter/dotfiles ~/.dotfiles/
     cd ~/.dotfiles/scripts/install_vm_bionic.sh
     ```
+   The script will prompt for the timezone at the begining, and the smb password at the end 
+6. let it reboot
+7. from Windows host connect to in exporer:
+
+    ```
+    "\\192.168.1.100\<username>"
+    ```
 

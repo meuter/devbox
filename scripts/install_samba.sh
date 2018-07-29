@@ -2,6 +2,7 @@
 
 sudo apt install -y ifupdown samba
 
+sudo smbpasswd -a $(whoami)
 sudo cp ~/.dotfiles/network/interfaces /etc/network/
 sudo cp ~/.dotfiles/samba/smb.conf /etc/samba/
 
