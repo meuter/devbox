@@ -1,4 +1,4 @@
-#! /bin/bash -e
+#! /bin/bash -ex
 
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 sudo sh -c "echo 'deb https://download.virtualbox.org/virtualbox/debian/ bionic non-free contrib' > /etc/apt/sources.list.d/virtualbox.list"

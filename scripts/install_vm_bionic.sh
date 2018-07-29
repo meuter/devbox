@@ -1,4 +1,4 @@
-#! /bin/bash -e
+#! /bin/bash -ex
 
 # replace default source.list which does not have universe and multiverse
 # by default on ubuntu server

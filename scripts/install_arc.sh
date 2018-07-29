@@ -1,4 +1,4 @@
-#! /bin/bash -e
+#! /bin/bash -ex
 
 sudo apt install arc-theme xubuntu-icon-theme thunar
 
