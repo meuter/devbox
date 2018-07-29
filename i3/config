@@ -143,7 +143,7 @@ bindsym Control+Shift+c exec code
 bindsym Control+$mod+c exec "code ~/.dotfiles/"
 
 # config reboot/shutdown/exit shortcut
-set $mode_system System (e)xit, (r)reboot, (s)hutdown
+set $mode_system System (e)xit, (r)eboot, (s)hutdown
 mode "$mode_system" {
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true, mode "default"
