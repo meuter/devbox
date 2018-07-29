@@ -4,7 +4,7 @@
 # 1/ install vanilla i3
 ###############################################################################
 
-sudo apt install -y i3 rofi feh xinit x11-xserver-utils xclip
+sudo apt install -y i3 rofi feh xinit x11-xserver-utils xclip numlockx
 mkdir -p .config/i3/
 
 ###############################################################################
