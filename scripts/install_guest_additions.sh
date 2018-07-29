@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -e
 
 read -p "Click 'Device> Install Guest Additions...' in VirtualBox (return=done)?" 
 

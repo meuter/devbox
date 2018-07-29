@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -e
 
 # font awesome
 sudo apt-get install -y fonts-font-awesome

@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -e
 
 # install zsh and make default for current user
 sudo apt-get install zsh wget

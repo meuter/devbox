@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -e
 
 ./install_guest_additions.sh
 
@@ -12,6 +12,7 @@ sudo apt-get update
 ./install_urxvt.sh
 ./install_i3_gaps.sh
 ./install_zsh.sh
+./install_arc.sh
 
 reboot
 

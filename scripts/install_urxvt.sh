@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -e
 
 sudo apt-get install -y rxvt-unicode x11-xserver-utils
 
