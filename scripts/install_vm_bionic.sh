@@ -1,7 +1,7 @@
 #! /bin/bash -ex
 
-./config_sources_list.sh
 ./config_tz.sh
+./config_sources_list.sh
 ./install_guest_additions.sh
 ./install_i3_gaps.sh
 ./install_fonts.sh
