@@ -1,7 +1,7 @@
 #! /bin/bash -ex
 
 # install zsh and make default for current user
-sudo apt install zsh wget
+sudo apt install -y zsh wget
 sudo usermod -s $(which zsh) $(whoami)
 
 # install oh-my-zsh

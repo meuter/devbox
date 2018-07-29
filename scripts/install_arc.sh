@@ -1,6 +1,6 @@
 #! /bin/bash -ex
 
-sudo apt install arc-theme xubuntu-icon-theme thunar
+sudo apt install -y arc-theme xubuntu-icon-theme thunar
 
 # update gtk settings simlink
 if [ -f ~/.config/gtk-3.0/settings.ini ]; then
