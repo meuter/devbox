@@ -9,6 +9,7 @@
 | Browser          | google chrome |
 | Shell            | zsh+oh-my-zsh+bullet-train |
 | Display Manager  | slim |
+| File Manager     | thunar(xfce) |
 | Theme            | Arc-Dark |
 | Extra            | custom configs, autologin, samba share |
 
@@ -29,6 +30,8 @@
     git clone https://github.com/meuter/devbox ~/.devbox/
     cd ~/.devbox/scripts/install_vm_bionic.sh
     ```
+
+    (will ask you to select the tz, and type in you samba password)
 6. let it reboot
 
 # Usage
