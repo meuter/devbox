@@ -11,4 +11,5 @@
     "gitlens.blame.highlight.enabled": false,
     "gitlens.hovers.enabled": false,
     "git.enableSmartCommit": true,
+    "git.autofetch": true,
 }
