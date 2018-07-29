@@ -29,7 +29,7 @@ Custom development box mainly for C/C++ and python.
         2. Host-Only (192.168.56.xx) - host only can connect to guest
 5. run main install script and follow instruction
     ```
-    git clone https://github.com/meuter/devbox ~/.devbox/
+    git clone --depth=1 https://github.com/meuter/devbox ~/.devbox/
     cd ~/.devbox/scripts/install_vm_bionic.sh
     ```
 

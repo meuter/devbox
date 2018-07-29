@@ -5,7 +5,7 @@ sudo apt install -y zsh wget
 sudo usermod -s $(which zsh) $(whoami)
 
 # install oh-my-zsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.config/oh-my-zsh/
+git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.config/oh-my-zsh/
 
 # install bullet train theme
 wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -P ~/.config/oh-my-zsh/themes/
