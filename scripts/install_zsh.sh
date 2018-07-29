@@ -14,4 +14,4 @@ wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet
 if [ -f ~/.zshrc ]; then
   mv ~/.zshrc ~/.zshrc.bak
 fi
-ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/.devbox/zsh/zshrc ~/.zshrc

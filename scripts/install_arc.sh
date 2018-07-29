@@ -8,4 +8,4 @@ if [ -f ~/.config/gtk-3.0/settings.ini ]; then
 else
   mkdir -p ~/.config/gtk-3.0/
 fi
-cp ~/.dotfiles/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
+cp ~/.devbox/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini

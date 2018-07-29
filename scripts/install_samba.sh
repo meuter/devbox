@@ -3,8 +3,8 @@
 sudo apt install -y ifupdown samba
 
 sudo smbpasswd -a $(whoami)
-sudo cp ~/.dotfiles/network/interfaces /etc/network/
-sudo cp ~/.dotfiles/samba/smb.conf /etc/samba/
+sudo cp ~/.devbox/network/interfaces /etc/network/
+sudo cp ~/.devbox/samba/smb.conf /etc/samba/
 
 default="192.168.56.100"
 ip=${1:-$default}

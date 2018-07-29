@@ -53,6 +53,6 @@ git clone git://github.com/tobi-wan-kenobi/bumblebee-status ~/.config/i3/bumbleb
 if [ -f ~/.config/i3/config ]; then
   mv ~/.config/i3/config ~/.config/i3/config.bak
 fi
-ln -s ~/.dotfiles/i3/config ~/.config/i3/config
+ln -s ~/.devbox/i3/config ~/.config/i3/config
 
 

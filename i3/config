@@ -129,7 +129,7 @@ gaps outer 0
 # smart_gaps on
 
 # wallpaper
-exec_always feh --bg-scale ~/.dotfiles/wallpapers/sunset.jpg
+exec_always feh --bg-scale ~/.devbox/wallpapers/sunset.jpg
 
 # disable mouse focus
 focus_follows_mouse no
@@ -140,7 +140,7 @@ bindsym Control+Shift+g exec google-chrome
 bindsym Control+Shift+o exec code
 
 # shortcut edit config 
-bindsym Control+$mod+c exec "code ~/.dotfiles/"
+bindsym Control+$mod+c exec "code ~/.devbox/"
 
 # config reboot/shutdown/exit shortcut
 set $mode_system System (e)xit, (r)eboot, (s)hutdown
