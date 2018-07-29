@@ -1,6 +1,6 @@
-# Custom Devbox:
+# Devbox
 
-Custom development box mainly for C/C++ and python.
+Custom development box designed to be installed in a VM.
 
 | Component        | Choice |
 | ---------------- | ------ | 
