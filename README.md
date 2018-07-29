@@ -63,5 +63,7 @@ In Windows Explorer, go to "Computer> Map Network Drive..." and use the followin
     ```
     "\\192.168.1.100\<username>"
     ```
+## Screenshots
 
+![screenshot1.png](./sreenshots/screenshot1.png)
 
