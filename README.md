@@ -1,5 +1,7 @@
 # Custom Devbox:
 
+Custom development box mainly for C/C++ and python.
+
 | Component        | Choice |
 | ---------------- | ------ | 
 | Distro           | Ubuntu 18.04.01 server |
