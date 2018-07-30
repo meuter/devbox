@@ -24,7 +24,7 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 
 # Install
 
-1. install virtual box > 5.2
+1. install virtual box (tested with v5.2)
 2. download Ubuntu 18.04.01 server iso image
 3. create a VM:
     1. At least 2Gb Ram
@@ -33,18 +33,21 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
     4. Two network adatper: 
         1. NAT - guest can go online
         2. Host-Only (192.168.56.xx) - host only can connect to guest
-5. run main install script and follow instruction
+    5. load the Ubuntu 18.04.01 server iso in the CDROM drive
+4. boot the VM and follow the Ubuntu installer's instruction
+5. reboot the VM
+6. clone the project and run the main install script:
     ```
     git clone --depth=1 https://github.com/meuter/devbox ~/.devbox/
     cd ~/.devbox/scripts/ 
     ./install_dev_box.sh
     ```
 
-   The script will ask you to select the timezone, and a little later, configure your
-   samba password (to share your home over samba in the guest). The install will then
-   continue until completion without user interaction. It will automatically reboot
-   at the end.
-    
+   The script will prompt you to select the timezone (for ntp sync), and a little later, 
+   it will prompt you to enter and confirm your samba password (to share your home over 
+   samba in the guest). The install script will then continue until completion without user interaction. The VM will reboot automatically at the end.
+7. Start coding 🤓
+
 # Usage
 
 ## i3 Keyboard Shortcut:
@@ -60,19 +63,21 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 | ctrl+shift+o | open thunar |
 | ctrl+alt+c   | edit devbox |
 
-## SSH into the box:
+## Network:
+
+From the guest machine only, you can ssh into the box. The default IP if 192.168.56.100 (see [install_devbox_cme.sh](/scripts/install_devbox_cme.sh) if you want to change this):
 
 ```
 ssh 192.168.56.100
 ```
 
-## Mounting home to windows host:
-
-In Windows Explorer, go to "Computer> Map Network Drive..." and use the following address:
+You can also mount your home directory from a Windows host machine. For that, open the file explorer, go to "Computer> Map Network Drive..." and use the following address:
 
 ```
 \\192.168.1.100\<username>
 ```
+
+Use your user name with the samba password you entered during installation.
 
 ## git alias and shortcuts:
 
