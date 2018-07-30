@@ -12,7 +12,7 @@ I do mostly C/C++, python, and the occasional javascript and go. Here is a small
 | Desktop          | [i3-gaps](https://github.com/Airblader/i3) with [bumblebee-status](https://github.com/tobi-wan-kenobi/bumblebee-status) and custom config | minimalistic, configurable, keyboard based |
 | Launcher         | [rofi](https://github.com/DaveDavenport/rofi) | keyboard based, prettier that dmenu |
 | Terminal         | [rxvt-unicode](https://wiki.archlinux.org/index.php/rxvt-unicode) with custom config | minimalistic, configurable |
-| Dev. Editor      | [Visual Studio Code](https://code.visualstudio.com/) with some custom extensions | user friendly, extensible, multi-language, *not* vim 😂|
+| Dev. Editor      | [Visual Studio Code](https://code.visualstudio.com/) with some custom extensions | user friendly, extensible, multi-language, __not__ vim 😂|
 | Browser          | [Google Chrome](https://www.google.com/chrome/) | chrome dev tools |
 | Shell            | [oh-my-zsh](https://ohmyz.sh/) with [bullet-train](https://github.com/caiogondim/bullet-train.zsh) | theming, improved tab completion over bash |
 | Display Manager  | [slim](https://wiki.archlinux.org/index.php/SLiM) with some [custom themes](https://github.com/adi1090x/slim_themes) | tiny footprint, easy to configure |
