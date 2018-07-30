@@ -11,13 +11,12 @@ source ./authenticate.sh
 ./install_samba.sh
 ./install_zsh.sh
 ./install_i3_gaps.sh
+./install_slim.sh
+./install_vscode.sh
+./install_google_chrome.sh
+./config_git.sh
+./config_alternatives.sh
 
-exit
-#./install_vscode.sh
-#./install_google_chrome.sh
-#./install_slim.sh
-#./install_arc.sh
-#./config_git.sh
-##./config_alternatives.sh
-
-#$reboot
+if [ ! "$1" == "noreboot" ]; then
+    reboot
+fi

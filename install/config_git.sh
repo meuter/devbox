@@ -1,4 +1,8 @@
-#! /bin/bash -ex
+#! /bin/bash -e
+
+source ./colors.sh
+
+info "Configuring GIT..."
 
 # short status
 git config --global alias.wtf "status -s"
@@ -42,4 +46,7 @@ git config --global alias.revin "!git remote update -p; git difftool -d @{u}"
 
 # cache credentials  
 git config --global credential.helper cache
+
+success "Done!"
+
 

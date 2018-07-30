@@ -9,4 +9,6 @@ rm -rf ~/.Xresources
 rm -rf ~/.config/i3/bumblebee-status
 rm -rf /tmp/i3-gaps
 rm -rf /tmp/fonts
+rm -rf ~/.config/Code/User/settings.json
 sudo rm -rf /etc/i3
+sudo rm -rf /etc/slim.conf

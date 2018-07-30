@@ -39,6 +39,9 @@ echo '#include ".devbox/Xresources/rofi"' >> ~/.Xresources
 echo '#include ".devbox/Xresources/colors"' >> ~/.Xresources
 echo '#include ".devbox/Xresources/rxvt-unicode"' >> ~/.Xresources
 
+info "Configuring uxrvt as default terminal..."
+sudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
+
 info "Cleanup..."
 cd ~ 
 rm -rf /tmp/i3-gaps

@@ -1,14 +1,16 @@
-#! /bin/bash -ex
+#! /bin/bash -e
 
-sudo apt install -y curl
+source ./colors.sh
 
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+info "Installing Visual Studio Code..."
+curl --silent https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 sudo apt update
-sudo apt install -y code libgtk2.0-0 exuberant-ctags cmake python-pip
+sudo apt install -y code libgtk2.0-0 exuberant-ctags cmake ccache
 sudo pip install pylint autopep8
 
+info "Installing Visual Studio Code extensions..."
 code --install-extension patbenatar.advanced-new-file
 code --install-extension ms-vscode.cpptools
 code --install-extension twxs.cmake
@@ -20,11 +22,8 @@ code --install-extension ms-python.python
 code --install-extension slevesque.vscode-hexdump
 code --install-extension adammaras.overtype
 
-# update simlink
-if [ -f ~/.config/Code/User/settings.json ]; then
-  mv ~/.config/Code/User/settings.json ~/.config/Code/User/settings.json.bak
-fi
+info "Installing devbox Visual Studio Code settings..."
 ln -s ~/.devbox/Code/settings.json ~/.config/Code/User/settings.json
 
-
+success "Done!"
 

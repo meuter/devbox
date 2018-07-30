@@ -1,12 +1,8 @@
 #! /bin/bash -ex
 
-# install vanilla devbox
-./install_devbox.sh 
-
-# install my pref
+./install_devbox.sh noreboot
 ./config_autologin.sh
 ./config_git_cme.sh
 
-# automatically reboot
 reboot
 
