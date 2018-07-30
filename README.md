@@ -40,9 +40,10 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
     ./install_dev_box.sh
     ```
 
-   The script will ask you to select the timezone, and type in you samba password,
-   to share your home over samba. The install will then continue until completion
-   and automatically reboot.
+   The script will ask you to select the timezone, and a little later, configure your
+   samba password (to share your home over samba in the guest). The install will then
+   continue until completion without user interaction. It will automatically reboot
+   at the end.
     
 # Usage
 
