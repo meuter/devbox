@@ -17,6 +17,7 @@ reboot=${3:-reboot}
 ./install_google_chrome.sh
 ./install_slim.sh
 ./install_arc.sh
+./install_git_alias.sh
 ./config_alternatives.sh
 
 $reboot
