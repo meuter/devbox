@@ -54,4 +54,8 @@ if [ -f ~/.config/i3/config ]; then
 fi
 ln -s ~/.devbox/i3/config ~/.config/i3/config
 
+###############################################################################
+# 5/ configure rofi
+###############################################################################
 
+echo '#include ".devbox/Xresources/rofi"' >> ~/.Xresources
