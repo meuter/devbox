@@ -8,19 +8,19 @@
 *.color8:       #002b36
 
 ! red
-*.color1:       #c21919
-*.color9:       #bc3f3f
+*.color1:       #e20f0f
+*.color9:       #d12121
 
 ! green
 *.color2:       #528c43
 *.color10:      #76e25a
 
 ! yellow
-*.color3:       #fffb5b
-*.color11:      #e8e44a
+*.color3:       #c4bf00
+*.color11:      #c4bf00
 
 ! blue
-*.color4:       #1f8cd8
+*.color4:       #1d6fc6
 *.color12:      #257fb3
 
 ! magenta
