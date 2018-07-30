@@ -40,7 +40,7 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 6. clone the project and run the main install script:
     ```
     git clone --depth=1 https://github.com/meuter/devbox ~/.devbox/
-    cd ~/.devbox/scripts/ 
+    cd ~/.devbox/install/ 
     ./install_dev_box.sh
     ```
 
