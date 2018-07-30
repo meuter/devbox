@@ -15,7 +15,6 @@ source ./authenticate.sh
 ./install_vscode.sh
 ./install_google_chrome.sh
 ./config_git.sh
-./config_alternatives.sh
 
 if [ ! "$1" == "noreboot" ]; then
     reboot
