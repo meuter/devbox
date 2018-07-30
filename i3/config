@@ -61,8 +61,8 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # shift+control left/right to swicth to next/prev workspace
-bindsym $mod+Control+Left  workspace next
-bindsym $mod+Control+Right workspace prev
+bindsym $mod+Control+Left  workspace prev
+bindsym $mod+Control+Right workspace next
 
 
 # move focused container to workspace
