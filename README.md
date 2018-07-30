@@ -104,7 +104,7 @@ Git is configured with the following git aliase:
 | wipe | go back to HEAD | !git reset --hard HEAD; git clean -fd | 
 | progress | add currently tracked changes to last commit | commit -a --amend --reuse-message HEAD" |
 | meld | compare using meld | difftool -d<sup>(3)</sup>
-| review | review incoming changes without merging them | "!git remote update -p; git difftool -d @{u}" |
+| revin | review incoming changes without merging them | "!git remote update -p; git difftool -d @{u}" |
 
 #### __Notes__:
 - __(1)__ you can type this in the terminal instead of "git \<alias\>"
