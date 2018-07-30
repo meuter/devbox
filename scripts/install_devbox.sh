@@ -1,13 +1,12 @@
 #! /bin/bash -ex
 
-ip=${1:-$(echo "192.168.56.100")}
 tz=${2:-$(tzselect)}
 reboot=${3:-reboot}
 
 ./config_grub.sh
 ./config_tz.sh $tz
 ./config_sources_list.sh
-./install_samba.sh $ip
+./install_samba.sh
 ./install_core.sh
 ./install_guest_additions.sh
 ./install_i3_gaps.sh
