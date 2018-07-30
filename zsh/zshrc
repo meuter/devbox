@@ -68,6 +68,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+export BULLETTRAIN_PROMPT_ORDER=(time virtualenv status custom context dir git cmd_exec_time)
+export BULLETTRAIN_PROMPT_CHAR="\u2605"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -97,5 +100,21 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# some git shortcuts
 alias w="git status -s"
-alias d="git diff"
+alias d="git --no-pager diff"
+alias i='git in'
+alias o='git out'
+
+# raw control char for less
+alias less="less -r"
+
+# color logcat
+logcat()
+{
+        python ~/.devbox/utils/colored-logcat.py $@
+}
+
+# one history per shell
+unsetopt share_history
+
