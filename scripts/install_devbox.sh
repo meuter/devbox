@@ -9,7 +9,7 @@ source ./authenticate.sh
 ./config_tz.sh 
 ./install_guest_additions.sh
 ./install_samba.sh
-./install_zsh
+./install_zsh.sh
 ./install_i3_gaps.sh
 
 exit
