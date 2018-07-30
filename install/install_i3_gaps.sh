@@ -9,8 +9,8 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
                     libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
                     libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev\
                     autoconf libxcb-xrm0 libxcb-xrm-dev automake numlockx \
-		    xclip feh rofi xinit x11-xserver-utils rxvt-unicode i3\
-		    fonts-font-awesome python-psutil
+		            xclip feh rofi xinit x11-xserver-utils rxvt-unicode i3\
+		            fonts-font-awesome python-psutil lxappearance
 
 info "Installing i3-gaps on top..."
 git clone https://www.github.com/Airblader/i3 /tmp/i3-gaps
