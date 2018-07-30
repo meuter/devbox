@@ -17,7 +17,6 @@ I do mostly C/C++, python, and the occasional javascript and go. Here is a small
 | Shell            | [oh-my-zsh](https://ohmyz.sh/) with [bullet-train](https://github.com/caiogondim/bullet-train.zsh) | theming, improved tab completion over bash |
 | Display Manager  | [slim](https://wiki.archlinux.org/index.php/SLiM) with some [custom themes](https://github.com/adi1090x/slim_themes) | tiny footprint, easy to configure |
 | File Manager     | [Thunar](https://wiki.archlinux.org/index.php/thunar) | user friendly, familiar |
-| GTK Theme        | [Arc-Dark](https://github.com/horst3180/arc-theme) | pretty |
 | Extra            | custom configs, autologin, samba share | familiar |
 
 Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA) and [Code Path](https://www.youtube.com/channel/UCcQsDUZiK1GWDcP7BpVO_kw) for inspiring this!
@@ -32,7 +31,9 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
     3. Video memory 128Mb    
     4. Two network adatper: 
         1. NAT - guest can go online
-        2. Host-Only (192.168.56.xx) - host only can connect to guest
+        2. Host-Only - host only can connect to guest
+            - select static IP 192.168.56.<whatever> (e.g. 192.168.56.100)
+            - configure netmask 192.168.56.0/24 (192.168.56.1 is the default address in host network manager)
     5. load the Ubuntu 18.04.01 server iso in the CDROM drive
 4. boot the VM and follow the Ubuntu installer's instruction
 5. reboot the VM
@@ -73,19 +74,19 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 
 ## Network:
 
-From the guest machine only, you can ssh into the box. The default IP if 192.168.56.100 (see [install_devbox_cme.sh](/scripts/install_devbox_cme.sh) if you want to change this):
+From the guest machine only, you can ssh into the box. 
 
 ```
-ssh 192.168.56.100
+ssh <user>@<ip>
 ```
 
 You can also mount your home directory from a Windows host machine. For that, open the file explorer, go to "Computer> Map Network Drive..." and use the following address:
 
 ```
-\\192.168.1.100\<username>
+\\<ip>\<username>
 ```
 
-Use your user name with the samba password you entered during installation.
+Use your user name and password.
 
 ## git alias and shortcuts:
 
