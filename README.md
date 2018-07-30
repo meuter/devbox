@@ -54,7 +54,7 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 
 | key          | function |
 | ------------ | ----- |
-| f11 | full screen current windows |
+| f11 | full screen focussed window |
 | alt+\<arrow\> | move focus | 
 | alt+shift+\<arrow\> | move window |
 | alt+\<num\> | select worspace |
