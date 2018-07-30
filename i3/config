@@ -81,6 +81,11 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+# shift+control left/right to swicth to next/prev workspace
+bindsym $mod+Control+Left workspace next
+bindsym $mod+Control+Right workspace prev
+
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -121,6 +126,18 @@ bar {
         status_command ~/.config/i3/bumblebee-status/bumblebee-status -m cpu memory date time -p root.path=/ time.format="%H:%M:%S" date.format="%a, %b %d %Y" -t solarized-powerline
         font pango:Noto Mono for Powerline 12
         position top
+
+        colors {
+           background #586e75
+           statusline #000000
+           separator #000000
+           #                  border  backgr. text
+           focused_workspace  #586e75 #dfded0 #222222
+           active_workspace   #333333 #5f676a #ffffff
+           inactive_workspace #333333 #222222 #888888
+           urgent_workspace   #2f343a #900000 #ffffff
+        }
+
 }
 
 # i3-gaps
