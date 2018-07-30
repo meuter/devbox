@@ -101,8 +101,11 @@ export BULLETTRAIN_PROMPT_CHAR="\u2605"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # some git shortcuts
-alias w="git status -s"
+
 alias d="git --no-pager diff"
+alias w="git status -s"
+alias l='git lol'
+alias r='git recent -20'
 alias i='git in'
 alias o='git out'
 

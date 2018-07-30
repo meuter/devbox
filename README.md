@@ -73,6 +73,31 @@ In Windows Explorer, go to "Computer> Map Network Drive..." and use the followin
 ```
 \\192.168.1.100\<username>
 ```
+
+## git alias and shortcuts:
+
+Git is configured with the following git aliase:
+
+| Git Alias | Meaning | Command | Console Alias<sup>(1)</sup> | 
+| --------- | ------- | ------- | ------------- |
+| diff  | diff against HEAD | diff --no-pager | d |
+| wtf   | short status | status -s | w |
+| recent | recent change current branch | log -5 --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %C(white)%<(70,trunc)%s%Creset (%cn)' | r | 
+| in | incoming commits<sup>(2)</sup> | !git remote update -p; git log --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %Cred%<(70,trunc)%s%Creset (%cn)' ..@{u} | i | 
+| out | outgoing commits<sup>(2)</sup> | log --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %Cred%<(70,trunc)%s%Creset (%cn)' @{u}.. | o | 
+| lol   | pretty log current branch | log --decorate --pretty=oneline --abbrev-commit --color | l |
+| lolg  | pretty log all branches | log --graph --decorate --pretty=oneline --abbrev-commit --all --color | 
+| update | update workspace | !git stash; git pull --rebase; git stash pop | 
+| wipe | go back to HEAD | !git reset --hard HEAD; git clean -fd | 
+| progress | add currently tracked changes to last commit | commit -a --amend --reuse-message HEAD" |
+| meld | compare using meld | difftool -d<sup>(3)</sup>
+| review | review incoming changes without merging them | "!git remote update -p; git difftool -d @{u}" |
+
+#### __Notes__:
+- __(1)__ you can type this in the terminal instead of "git \<alias\>"
+- __(2)__ needs the current branch to track some remote branch
+- __(3)__ meld is configured as the default git difftool.
+
 ## Screenshots
 
 ### Login Screen
