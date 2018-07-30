@@ -54,6 +54,11 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 
 | key          | function |
 | ------------ | ----- |
+| f11 | full screen current windows |
+| alt+\<arrow\> | move focus | 
+| alt+shift+\<arrow\> | move window |
+| alt+\<num\> | select worspace |
+| control+shift+\<arrow\> | select next/prev workspace |
 | alt+pause s  | shutdown |
 | alt+pause r  | reboot |
 | alt+pause e  | logout |
