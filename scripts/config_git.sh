@@ -41,5 +41,5 @@ git config --global alias.meld "difftool -d"
 git config --global alias.revin "!git remote update -p; git difftool -d @{u}"
 
 # cache credentials  
-git config credential.helper cache
+git config --global credential.helper cache
 
