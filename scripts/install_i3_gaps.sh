@@ -1,61 +1,48 @@
-#! /bin/bash -ex
+#! /bin/bash -e
 
-###############################################################################
-# 1/ install vanilla i3
-###############################################################################
+source ./colors.sh
 
-sudo apt install -y i3 rofi feh xinit x11-xserver-utils xclip numlockx
-
-###############################################################################
-# 2/ install i3-gaps on top
-###############################################################################
-
-# install dependencies
+info "Installing i3, rofi, rxvt-unicode & i3-gaps dependencies..."
 sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
-                        libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
-                        libstartup-notification0-dev libxcb-randr0-dev \
-                        libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
-                        libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev\
-                        autoconf libxcb-xrm0 libxcb-xrm-dev automake
+                    libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
+                    libstartup-notification0-dev libxcb-randr0-dev \
+                    libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
+                    libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev\
+                    autoconf libxcb-xrm0 libxcb-xrm-dev automake numlockx \
+		    xclip feh rofi xinit x11-xserver-utils rxvt-unicode i3\
+		    fonts-font-awesome
 
-# clone the repository
+info "Installing i3-gaps on top..."
 git clone https://www.github.com/Airblader/i3 /tmp/i3-gaps
-
-# compile & install
 cd /tmp/i3-gaps
 autoreconf --force --install
 rm -rf build/
 mkdir -p build && cd build/
-
-# Disabling sanitizers is important for release versions!
-# The prefix and sysconfdir are, obviously, dependent on the distribution.
 ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-make -j 12
-sudo make install    
+make 
+sudo make install
 
-# cleanup
-cd ~ 
-rm -rf /tmp/i3-gaps
 
-###############################################################################
-# 3/ install bumblebee-status
-###############################################################################
+info "Installing powerline fonts..."
+git clone --depth=1 https://github.com/powerline/fonts.git /tmp/fonts
+cd /tmp/fonts
+./install.sh
 
-sudo apt install -y python python-netifaces python-psutil
-
+info "Installing bumblebee-status..."
 git clone --depth=1 git://github.com/tobi-wan-kenobi/bumblebee-status ~/.config/i3/bumblebee-status
 
-###############################################################################
-# 4/ install config symlinks
-###############################################################################
-
-if [ -f ~/.config/i3/config ]; then
-  mv ~/.config/i3/config ~/.config/i3/config.bak
-fi
+info "Installing devbox i3 config..."
 ln -s ~/.devbox/i3/config ~/.config/i3/config
 
-###############################################################################
-# 5/ configure rofi
-###############################################################################
-
+info "Installing devbox .Xresources..."
 echo '#include ".devbox/Xresources/rofi"' >> ~/.Xresources
+echo '#include ".devbox/Xresources/colors"' >> ~/.Xresources
+echo '#include ".devbox/Xresources/rxvt-unicode"' >> ~/.Xresources
+
+info "Cleanup..."
+cd ~ 
+rm -rf /tmp/i3-gaps
+rm -rf /tmp/fonts
+
+success "Done!"
+

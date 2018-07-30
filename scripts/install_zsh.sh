@@ -1,17 +1,20 @@
-#! /bin/bash -ex
+#! /bin/bash -e
 
-# install zsh and make default for current user
+source ./colors.sh
+
+info "Installing zsh..."
 sudo apt install -y zsh wget
+
+info "Setting zsh as default shell for $(whoami)..."
 sudo usermod -s $(which zsh) $(whoami)
 
-# install oh-my-zsh
+info "Installing oh-my-zsh..."
 git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.config/oh-my-zsh/
 
-# install bullet train theme
-wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -P ~/.config/oh-my-zsh/themes/
+info "Installing bullet-train theme..."
+wget --quiet http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -P ~/.config/oh-my-zsh/themes/
 
-# update zsh simlink
-if [ -f ~/.zshrc ]; then
-  mv ~/.zshrc ~/.zshrc.bak
-fi
+info "Installing devbox .zsh..."
 ln -s ~/.devbox/zsh/zshrc ~/.zshrc
+
+success "Done!"

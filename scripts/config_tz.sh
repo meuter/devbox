@@ -1,7 +1,20 @@
-#! /bin/bash -ex
+#! /bin/bash -e
 
-tz=${1:-$(tzselect)}
+source ./colors.sh
 
-# setup timezone & ntp
+info "Installing tzupdate..."
+pip install tzupdate
+
+info "Detecting timezone..."
+tz=${1:-$(~/.local/bin/tzupdate -p)}
+
+success "Detected '$tz'"
+
+info "Seting up ntp..."
 sudo timedatectl set-timezone $tz
 sudo timedatectl set-ntp on
+
+info "Cleaning up..."
+rm -rf .local
+
+success "Done!"
