@@ -134,8 +134,6 @@ bar {
            #                  border  backgr. text
            focused_workspace  #586e75 #dfded0 #222222
            active_workspace   #333333 #5f676a #ffffff
-           inactive_workspace #333333 #222222 #888888
-           urgent_workspace   #2f343a #900000 #ffffff
         }
 
 }
@@ -144,6 +142,12 @@ bar {
 gaps inner 10
 gaps outer 0
 # smart_gaps on
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #dfded0 #dfded0 #dfded0 #dfded0   #dfded0
+client.focused_inactive #dfded0 #dfded0 #dfded0 #dfded0   #dfded0
+client.unfocused        #586e75 #586e75 #586e75 #586e75   #586e75
+
 
 # wallpaper
 exec_always feh --bg-scale ~/.devbox/wallpapers/sunset.jpg
