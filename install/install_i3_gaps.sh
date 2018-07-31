@@ -29,7 +29,7 @@ cd /tmp/fonts
 ./install.sh
 
 info "Installing bumblebee-status..."
-git clone --depth=1 git://github.com/tobi-wan-kenobi/bumblebee-status ~/.config/i3/bumblebee-status
+git clone --depth=1 https://github.com/tobi-wan-kenobi/bumblebee-status ~/.config/i3/bumblebee-status
 
 info "Installing devbox i3 config..."
 ln -s ~/.devbox/i3/config ~/.config/i3/config
