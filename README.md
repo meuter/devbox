@@ -32,10 +32,13 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
     4. Two network adatper: 
         1. NAT - guest can go online
         2. Host-Only - host only can connect to guest
-            - select static IP 192.168.56.<whatever> (e.g. 192.168.56.100)
-            - configure netmask 192.168.56.0/24 (192.168.56.1 is the default address in host network manager)
     5. load the Ubuntu 18.04.01 server iso in the CDROM drive
 4. boot the VM and follow the Ubuntu installer's instruction
+    - When configuring the network:
+        - select static IP for the second (Host-Only) adapter
+        - configure 192.168.56.<whatever> (assuming the VBox Host Network Manager is configured on 192.168.56.xx, which is the default - adapt otherwise)
+        - configure netmask 192.168.56.0/24 (same assumption, adapt otherwise)
+
 5. reboot the VM
 6. clone the project and run the main install script:
     ```
