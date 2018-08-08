@@ -24,8 +24,8 @@ bindsym Control+q kill
 
 # start rofi
 bindsym Control+space exec rofi -show window
-bindsym F2 exec rofi -show run
-bindsym F3 exec rofi -show drun
+bindsym F3 exec rofi -show run
+bindsym F4 exec rofi -show drun
 
 # focus
 bindsym $mod+Left focus left
