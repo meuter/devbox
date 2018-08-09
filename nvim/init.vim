@@ -34,9 +34,6 @@ set splitright
 filetype plugin indent on
 autocmd FileType make   setlocal noexpandtab
 
-" Configure terminal mode
-tnoremap <Esc> <C-\><C-n>
-
 " Source init.vim whenever it's changed
 autocmd! BufWritePost init.vim,.vimrc source %
 
@@ -44,7 +41,7 @@ autocmd! BufWritePost init.vim,.vimrc source %
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim
     	\ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall | source ~/.config/nvim/init.vim 
+    autocmd VimEnter * PlugInstall 
 endif
 
 " Load all plugins
@@ -52,33 +49,37 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/ajmwagar/vim-deus.git'
+Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
 Plug 'https://github.com/scrooloose/nerdtree'
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git' 
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer' }
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/gabesoft/vim-ags.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
+Plug 'https://github.com/terryma/vim-multiple-cursors'
 call plug#end()
 
+" (try to) share clipboard with X.org
 set clipboard+=unnamedplus
 
-" Set solarized vim theme (if avoid error on first boot while plug downloads
-" the theme)
+
+" Configure status bar
+set noshowmode
+set laststatus=2
+
+" Configure colorscheme
 syntax enable
+set t_Co=256
+silent! colorscheme seoul256
 set background=dark
-silent! colorscheme solarized
 
-" Set solarized airline
-let g:airline_theme='solarized'
-let g:aitline_solarized_bg='dark'
-
-" Configure powerline characters
-let g:airline_powerline_fonts = 1
-
+" Configure status bar
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
+let g:airline_theme='molokai'
+let g:airline_powerline_fonts = 1
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
@@ -104,29 +105,65 @@ let g:ctrlp_working_path_mode = 'ra'
 " Remap leader key
 let mapleader = ","
 
-" ',n' toggle NERDTree
-map <leader>n :NERDTreeToggle<cr>
+" ',b' toggle NERDTree
+map <leader>b :NERDTreeToggle<cr>
 
-" ',t' create a terminal win
-map <leader>t :split \| terminal<cr>
+" ',st' create a terminal win
+map <leader>st :split \| terminal<cr>
 
-" ',g' grep
-map <leader>f :Ags 
+" ',vt' to create a terminal windows on the right
+map <leader>vt :vsplit \| terminal<cr>
 
-" Ctrl+s to save (habits...)
-inoremap <c-s> <Esc>:Update<CR>
-inoremap <c-s> <c-o>:Update<CR>
-vmap <C-s> <esc>:w<CR>gv
+" ',s' to create a split
+map <leader>s :split<cr>
+
+" ',v' to create a vsplit
+map <leader>v :vsplit<cr>
+
+" ',f' search workspace
+map <leader>f :Ags
+
+" ctrl+s to save (habits...)
+inoremap <C-s> <Esc>:w<cr>a
+nnoremap <C-s> :w<cr>
+vmap <C-s> <esc>:w<CR>v
+
+" turn on highlight of the current line
+set cursorline
 
 " terminal starts in insert mode
-autocmd TermOpen * startinsert
+autocmd TermOpen,BufWinEnter,WinEnter term://* startinsert
 
-" autoclose buffer when terminal exits
-autocmd TermClose * bd!
+" autoconfirm on exit
+autocmd TermClose term://* bd!
+
+" esc configure to switch to normal mode (for copy paste, etc...)
+tnoremap <Esc> <C-\><C-n>
+
+" auto escape to terminal mode when switching to another split
+tnoremap <C-w><Up> <C-\><C-n><C-w><Up>
+tnoremap <C-w><Down> <C-\><C-n><C-w><Down>
+tnoremap <C-w><Left> <C-\><C-n><C-w><Left>
+tnoremap <C-w><Right> <C-\><C-n><C-w><Right>
 
 " Use ctrl+kj to just 5 lines at a time
 nnoremap <C-k> 5k
 nnoremap <C-j> 5j
 nnoremap <C-y> 5<C-y>
 nnoremap <C-e> 5<C-e>
+
+" Use ctrl+kj to just 5 lines at a time
+nnoremap <C-k> 5k
+nnoremap <C-j> 5j
+nnoremap <C-y> 5<C-y>
+nnoremap <C-e> 5<C-e>
+
+
+" Highlight unwanted spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
