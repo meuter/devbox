@@ -11,9 +11,17 @@ URxvt.matcher.button:       C1
 URxvt.urlLauncher:          google-chrome
 
 ! setup font
-URxvt*font:                 xft:Noto\ Mono\ for\ Powerline:pixelsize=14:antialias=true
-URxvt*boldFont:             xft:Noto\ Mono\ for\ Powerline:pixelsize=14:antialias=false
-URxvt*letterSpace:          -1
+URxvt*font:                 xft:Noto\ Mono\ for\ Powerline:pixelsize=14
+URxvt*boldFont:             xft:Noto\ Mono\ for\ Powerline:pixelsize=14
+URxvt*letterSpace:          -1 
+
+! Improved font rendering
+Xft.dpi:                    112
+Xft.antialias:              true
+Xft.hinting:                true
+Xft.rgba:                   rgb
+Xft.hintstyle:              hintslight
+Xft.lcdfilter:              lcddefault
 
 ! display 
 ! URxvt*transparent:          true
