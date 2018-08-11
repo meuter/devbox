@@ -135,7 +135,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Language Support
     Plug 'https://github.com/sheerun/vim-polyglot.git'
-    Plug 'https://github.com/Shougo/deoplete.nvim'
+
+    Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'https://github.com/tweekmonster/deoplete-clang2.git'
     Plug 'https://github.com/vim-syntastic/syntastic.git'
     Plug 'https://github.com/zchee/deoplete-jedi.git'
