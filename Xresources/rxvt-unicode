@@ -11,17 +11,17 @@ URxvt.matcher.button:       C1
 URxvt.urlLauncher:          google-chrome
 
 ! setup font
-URxvt*font:                 xft:Noto\ Mono\ for\ Powerline:pixelsize=14
-URxvt*boldFont:             xft:Noto\ Mono\ for\ Powerline:pixelsize=14
-URxvt*letterSpace:          -1
+URxvt*font:                 xft:DejaVu Sans Mono for Powerline:size=10
+URxvt*boldFont:             xft:DejaVu Sans Mono for Powerline:style=bold:size=11
+URxvt*italicFont:           xft:DejaVu Sans Mono for Powerline:style=italic:size=11
+URxvt*boldItalicFont:       xft:DejaVu Sans Mono for Powerline:style=bolditalic:size=11
 
-! still having some trouble with these charaters ✘ ⬆ ✹ ✭
 
 ! Improved font rendering
 Xft.dpi:                    112
 Xft.antialias:              true
 Xft.hinting:                true
-Xft.rgba:                   rgb
+Xft.rgba:                   subpixel
 Xft.hintstyle:              hintslight
 Xft.lcdfilter:              lcddefault
 
