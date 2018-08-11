@@ -130,3 +130,6 @@ bindkey '^H' gohome
 # ctrl+p natigate directories with fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^P' fzf-cd-widget
+
+# disable control flow (ctrl+s, ctrl+q)
+stty -ixon ixoff
