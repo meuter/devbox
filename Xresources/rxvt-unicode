@@ -11,15 +11,17 @@ URxvt.matcher.button:       C1
 URxvt.urlLauncher:          google-chrome
 
 ! setup font
-!URxvt*font:                 xft:DejaVu Sans Mono for Powerline:size=11
-!URxvt*boldFont:             xft:DejaVu Sans Mono for Powerline:style=bold:size=11
-!URxvt*italicFont:           xft:DejaVu Sans Mono for Powerline:style=italic:size=11
-!URxvt*boldItalicFont:       xft:DejaVu Sans Mono for Powerline:style=bolditalic:size=11
-
-URxvt*font:		xft:FuraCode Nerd Font:style=Retina:pixelsize=30:antialias=true:hinting=true
+!URxvt*font:                 xft:NotoMono Nerd Font Mono:style=book:size=11
+!URxvt*boldFont:             xft:NotoMono Nerd Font Mono:style=bold:size=11
+!URxvt*italicFont:           xft:NotoMono Nerd Font Mono:style=italic:size=11
+!URxvt*boldItalicFont:       xft:NotoMono Nerd Font Mono:style=bolditalic:size=11
+URxvt*font: xft:Hack Nerd Font Mono:size=11
+URxvt*boldFont: xft:Hack Nerd Font Mono:bold:size=11
+URxvt*lineSpace: -1
 
 ! Improved font rendering
-Xft.dpi:                    112
+Xft.autohint:               0
+Xft.dpi:                    96
 Xft.antialias:              true
 Xft.hinting:                true
 Xft.rgba:                   subpixel
