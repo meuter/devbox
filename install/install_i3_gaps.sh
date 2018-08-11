@@ -10,7 +10,7 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
                     libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev\
                     autoconf libxcb-xrm0 libxcb-xrm-dev automake numlockx \
 		            xclip feh rofi xinit x11-xserver-utils rxvt-unicode i3\
-		            fonts-font-awesome fonts-powerline python-psutil lxappearance
+		            python-psutil lxappearance
 
 info "Installing i3-gaps on top..."
 git clone https://www.github.com/Airblader/i3 /tmp/i3-gaps
@@ -19,14 +19,14 @@ autoreconf --force --install
 rm -rf build/
 mkdir -p build && cd build/
 ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-make 
+make
 sudo make install
 
 
-#info "Installing powerline fonts..."
-#git clone --depth=1 https://github.com/powerline/fonts.git /tmp/fonts
-#cd /tmp/fonts
-#./install.sh
+info "Installing powerline fonts..."
+git clone --depth=1 https://github.com/powerline/fonts.git /tmp/fonts
+cd /tmp/fonts
+./install.sh
 
 info "Installing bumblebee-status..."
 git clone --depth=1 https://github.com/tobi-wan-kenobi/bumblebee-status ~/.config/i3/bumblebee-status
@@ -43,7 +43,7 @@ info "Configuring uxrvt as default terminal..."
 sudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
 
 info "Cleanup..."
-cd ~ 
+cd ~
 rm -rf /tmp/i3-gaps
 rm -rf /tmp/fonts
 
