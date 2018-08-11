@@ -10,5 +10,8 @@ sudo apt install -y build-essential neofetch vim python python-pip \
 info "Configuring VIM as default editor..."
 sudo update-alternatives --set editor /usr/bin/vim.basic
 
+info "Removing some bloatware..."
+sudo apt purge snapd ubuntu-core-launcher squashfs-tools
+
 success "Done!"
 
