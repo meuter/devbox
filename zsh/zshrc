@@ -121,3 +121,4 @@ logcat()
 # one history per shell
 unsetopt share_history
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

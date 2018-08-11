@@ -11,13 +11,13 @@
 
 set $mod Mod1
 
-
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+set $terminal xfce4-terminal --hide-menubar
+
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym Control+q kill
@@ -83,7 +83,6 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # same bindings, but for the arrow keys
@@ -108,7 +107,7 @@ bar {
         colors {
            background #AAAAAA
            statusline #101010
-           separator #000000
+           separator  #000000
            #                  border  backgr. text
            focused_workspace  #586e75 #dfded0 #222222
            active_workspace   #333333 #5f676a #ffffff
@@ -128,7 +127,6 @@ client.focused          #dfded0 #dfded0 #dfded0 #dfded0   #dfded0
 client.focused_inactive #dfded0 #dfded0 #dfded0 #dfded0   #dfded0
 client.unfocused        #586e75 #586e75 #586e75 #586e75   #586e75
 
-
 # wallpaper
 exec_always feh --bg-scale ~/.devbox/wallpapers/sunset.jpg
 
@@ -141,14 +139,14 @@ bindsym Control+Shift+g exec google-chrome
 bindsym Control+Shift+o exec code
 
 # shortcut edit config
-bindsym Control+$mod+c exec "rxvt -cd ~/.devbox/ -e vim"
+bindsym Control+$mod+c exec $terminal --working-directory=$HOME/.devbox/ --execute vim
 
 # config reboot/shutdown/exit shortcut
 set $mode_system System (e)xit, (r)eboot, (s)hutdown
 mode "$mode_system" {
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true, mode "default"
-    bindsym s exec --no-startup-id dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true, mode "default"  
+    bindsym s exec --no-startup-id dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

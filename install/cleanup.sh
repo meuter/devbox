@@ -2,7 +2,7 @@
 
 sudo smbpasswd -x $(whoami) || true
 rm -rf ~/.local/
-rm -rf ~/.config/oh-my-zsh 
+rm -rf ~/.config/oh-my-zsh
 rm -rf ~/.zshrc
 rm -rf ~/.config/i3/config
 rm -rf ~/.Xresources

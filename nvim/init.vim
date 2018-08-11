@@ -58,6 +58,7 @@ Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/gabesoft/vim-ags.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors'
+Plug 'https://github.com/ryanoasis/vim-devicons.git'
 call plug#end()
 
 " (try to) share clipboard with X.org

@@ -17,4 +17,8 @@ wget --quiet http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/maste
 info "Installing devbox .zsh..."
 ln -s ~/.devbox/zsh/zshrc ~/.zshrc
 
+info "Installing fzf..."
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+yes | ~/.fzf/install
+
 success "Done!"

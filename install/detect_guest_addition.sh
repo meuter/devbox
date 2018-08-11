@@ -9,7 +9,7 @@ sudo mkdir -p /media/additions
 
 missing_guest_additions() {
 	error "Please insert VBox Guest Addition CD image and retry"
-	info 
+	info
 	info  "'Devices' >>> 'Insert Guest Additions CD image...'"
 	info
 	exit -1
@@ -19,14 +19,14 @@ missing_guest_additions() {
 mounted=$(sudo sh -c "if mount /dev/cdrom /media/additions; then echo yes; else echo no; fi")
 if [ "$mounted" == "no" ]; then
        	error "No CD available..."
-	missing_guest_additions 
+	missing_guest_additions
 fi
 
 # detect if mounted cd is actually guest addition
-if [ ! -f /media/additions/VBoxLinuxAdditions.run ]; then 
+if [ ! -f /media/additions/VBoxLinuxAdditions.run ]; then
 	error "Inserted CD is the right one..."
 	sudo umount /media/additions
-	missing_guest_additions 
+	missing_guest_additions
 fi
 
 sudo umount /media/additions
