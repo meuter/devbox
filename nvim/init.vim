@@ -36,8 +36,7 @@ filetype plugin indent on
 autocmd FileType make   setlocal noexpandtab
 
 " Source init.vim & reload Airline whenever it's changed
-autocmd! BufWritePost init.vim source %
-autocmd! BufWritePost init.vim :AirlineRefresh
+autocmd! BufWritePost init.vim,.vimrc source ~/.config/nvim/init.vim
 
 
 " Auto-install vim-plug
@@ -65,7 +64,11 @@ Plug 'https://github.com/ryanoasis/vim-devicons.git'
 call plug#end()
 
 " (try to) share clipboard with X.org
+set clipboard+=unnamed
 set clipboard+=unnamedplus
+vmap <LeftRelease> "*ygv
+vnoremap <2-LeftMouse> <2-LeftMouse>"*ygv
+vnoremap <3-LeftMouse> <3-LeftMouse>"*ygv
 
 
 " Configure status bar
@@ -164,4 +167,5 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
 
