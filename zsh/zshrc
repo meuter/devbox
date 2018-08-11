@@ -113,12 +113,20 @@ alias o='git out'
 alias less="less -r"
 
 # color logcat
-logcat()
-{
-        python ~/.devbox/utils/colored-logcat.py $@
-}
+logcat() { python ~/.devbox/utils/colored-logcat.py $@ }
 
 # one history per shell
 unsetopt share_history
 
+# ctrl+h to go home
+function gohome {
+    echo
+    cd ~
+    zle reset-prompt
+}
+zle -N gohome
+bindkey '^H' gohome
+
+# ctrl+p natigate directories with fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey '^P' fzf-cd-widget
