@@ -101,7 +101,7 @@ bindsym $mod+r mode "resize"
 # status bar
 bar {
         status_command ~/.config/i3/bumblebee-status/bumblebee-status -m cpu memory date time -p root.path=/ time.format="%H:%M:%S" date.format="%a, %b %d %Y" -t solarized-powerline
-        font pango:Noto Mono for Powerline 9
+        font pango:Noto Mono for Powerline 11
         position top
 
         colors {
