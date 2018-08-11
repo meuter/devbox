@@ -129,13 +129,13 @@ call plug#begin('~/.config/nvim/plugged')
 
      " Global search
     Plug 'https://github.com/mileszs/ack.vim.git'
+    Plug 'https://github.com/Valloric/ListToggle.git'
 
     " Multiple cursors
     Plug 'https://github.com/terryma/vim-multiple-cursors'
 
     " Language Support
     Plug 'https://github.com/sheerun/vim-polyglot.git'
-
     Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'https://github.com/tweekmonster/deoplete-clang2.git'
     Plug 'https://github.com/vim-syntastic/syntastic.git'
