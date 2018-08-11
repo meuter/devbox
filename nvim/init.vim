@@ -18,6 +18,57 @@ set incsearch
 set wrapscan
 set nowrap
 
+" Select using shift arrow
+noremap     <S-Down>    v<Down>
+noremap     <S-Up>      v<Up>
+noremap     <S-Left>    v<Left>
+noremap     <S-Right>   v<Right>
+noremap     <S-End>     v$
+noremap     <S-Home>    v^
+
+vnoremap    <S-Up>      <Up>
+vnoremap    <S-Down>    <Down>
+vnoremap    <S-Left>    <Left>
+vnoremap    <S-Right>   <Right>
+
+vnoremap    <Up>        <Esc><Up>
+vnoremap    <Down>      <Esc><Down>
+vnoremap    <Left>      <Esc><Left>
+vnoremap    <Right>     <Esc><Right>
+
+inoremap    <S-Down>    <Esc>v<Down>
+inoremap    <S-Up>      <Esc>v<Up>
+inoremap    <S-Left>    <Esc>v<Left>
+inoremap    <S-Right>   <Esc>v<Right>
+inoremap    <S-End>     <Esc>v$
+inoremap    <S-Home>    <Esc>v^
+
+" CTRL-A is Select all
+noremap <C-A> gggH<C-O>G
+inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-A> <C-C>gggH<C-O>G
+onoremap <C-A> <C-C>gggH<C-O>G
+snoremap <C-A> <C-C>gggH<C-O>G
+xnoremap <C-A> <C-C>ggVG
+
+" When switching back to Normal mode from Insert mode
+" prevent the cursor from moving to the left, grrr
+inoremap <Esc> <Esc><Right>
+
+" CTRL-Z is Undo; not in cmdline though
+noremap <C-Z> u
+inoremap <C-Z> <C-O>u
+
+" CTRL-R to redo
+noremap <C-R> <C-R>
+inoremap <C-R> <C-O><C-R>
+
+" CTRL+S to save
+inoremap <C-s> <Esc>:w<cr>a
+nnoremap <C-s> :w<cr>
+vmap <C-s> <esc>:w<CR>v
+
+
 " Enable mouse integration
 set mouse=a
 
@@ -36,8 +87,7 @@ filetype plugin indent on
 autocmd FileType make   setlocal noexpandtab
 
 " Source init.vim & reload Airline whenever it's changed
-autocmd! BufWritePost init.vim,.vimrc source ~/.config/nvim/init.vim
-
+autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim | AirlineRefresh
 
 " Auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -48,24 +98,40 @@ endif
 
 " Load all plugins
 call plug#begin('~/.config/nvim/plugged')
-Plug 'https://github.com/vim-airline/vim-airline.git'
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
-Plug 'https://github.com/altercation/vim-colors-solarized.git'
-Plug 'https://github.com/ajmwagar/vim-deus.git'
-Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
-Plug 'https://github.com/scrooloose/nerdtree'
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-" Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer' }
-Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/gabesoft/vim-ags.git'
-Plug 'https://github.com/easymotion/vim-easymotion.git'
-Plug 'https://github.com/terryma/vim-multiple-cursors'
-Plug 'https://github.com/ryanoasis/vim-devicons.git'
+
+    " Make vim pretty
+    Plug 'https://github.com/vim-airline/vim-airline.git'
+    Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+    Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
+
+    " Git support
+    Plug 'https://github.com/tpope/vim-fugitive.git'
+
+    " Side bar with pretty icons
+    Plug 'https://github.com/scrooloose/nerdtree'
+    Plug 'https://github.com/ryanoasis/vim-devicons.git'
+
+    " Move lines around
+    Plug 'https://github.com/matze/vim-move.git'
+
+    " Commenting stuff
+    Plug 'https://github.com/tpope/vim-commentary'
+
+    " Fuzzy file search
+    Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+
+    " Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer' }
+    Plug 'https://github.com/gabesoft/vim-ags.git'
+
+    " Multiple cursors
+    Plug 'https://github.com/terryma/vim-multiple-cursors'
 call plug#end()
 
-" (try to) share clipboard with X.org
+" Everything that's yanked is put in the cliboard + mouse cliboard
 set clipboard+=unnamed
 set clipboard+=unnamedplus
+
+" When selecting text in visual mode with the mouse => autoyank
 vmap <LeftRelease> "*ygv
 vnoremap <2-LeftMouse> <2-LeftMouse>"*ygv
 vnoremap <3-LeftMouse> <3-LeftMouse>"*ygv
@@ -124,10 +190,8 @@ map <leader>v :vsplit<cr>
 " ',f' search workspace
 map <leader>f :Ags
 
-" ctrl+s to save (habits...)
-inoremap <C-s> <Esc>:w<cr>a
-nnoremap <C-s> :w<cr>
-vmap <C-s> <esc>:w<CR>v
+" commenting out stuff
+map <leader>c gcc
 
 " turn on highlight of the current line
 set cursorline
@@ -169,3 +233,7 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 
+" Key Bindings for git
+map <Leader>gd :Gvdiff<cr>
+map <Leader>gw :Gstatus<cr>
+map <Leader>gb :Gblame<cr>
