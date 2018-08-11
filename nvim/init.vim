@@ -43,6 +43,8 @@ inoremap    <S-Right>   <Esc>v<Right>
 inoremap    <S-End>     <Esc>v$
 inoremap    <S-Home>    <Esc>v^
 
+nnoremap <silent> <C-c> :BD<cr>
+
 " CTRL-A is Select all
 noremap <C-A> gggH<C-O>G
 inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
@@ -67,7 +69,6 @@ inoremap <C-R> <C-O><C-R>
 inoremap <C-s> <Esc>:w<cr>a
 nnoremap <C-s> :w<cr>
 vmap <C-s> <esc>:w<CR>v
-
 
 " Enable mouse integration
 set mouse=a
@@ -104,6 +105,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://github.com/vim-airline/vim-airline-themes.git'
     Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
 
+    " Dim inactive windows
+    Plug 'https://github.com/blueyed/vim-diminactive.git'
+
     " Git support
     Plug 'https://github.com/tpope/vim-fugitive.git'
 
@@ -120,8 +124,13 @@ call plug#begin('~/.config/nvim/plugged')
     " Fuzzy file search
     Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 
-    " Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer' }
+    " Kill windows without losing split
+    Plug 'https://github.com/qpkorr/vim-bufkill.git'
+
+     " Global search
     Plug 'https://github.com/gabesoft/vim-ags.git'
+
+    " Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer' }
 
     " Multiple cursors
     Plug 'https://github.com/terryma/vim-multiple-cursors'
@@ -176,10 +185,13 @@ let mapleader = ","
 map <leader>b :NERDTreeToggle<cr>
 
 " ',st' create a terminal win
-map <leader>st :split \| terminal<cr>
+map <leader>ts :split \| terminal<cr>
 
 " ',vt' to create a terminal windows on the right
-map <leader>vt :vsplit \| terminal<cr>
+map <leader>tv :vsplit \| terminal<cr>
+
+" ',vt' to create a terminal windows on the right
+map <leader>t :terminal<cr>
 
 " ',s' to create a split
 map <leader>s :split<cr>
@@ -199,8 +211,9 @@ set cursorline
 " terminal starts in insert mode
 autocmd TermOpen,BufWinEnter,WinEnter term://* startinsert
 
-" autoconfirm on exit
-autocmd TermClose term://* bd!
+" terminal closes automatically when exit
+autocmd TermClose term://* :q 
+
 
 " esc configure to switch to normal mode (for copy paste, etc...)
 tnoremap <Esc> <C-\><C-n>
@@ -237,3 +250,4 @@ autocmd BufWinLeave * call clearmatches()
 map <Leader>gd :Gvdiff<cr>
 map <Leader>gw :Gstatus<cr>
 map <Leader>gb :Gblame<cr>
+
