@@ -1,5 +1,5 @@
 [Configuration]
-FontName=NotoMono Nerd Font 10
+FontName=NotoMono Nerd Font Mono 9
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=TRUE
@@ -36,4 +36,5 @@ ColorBoldUseDefault=FALSE
 ColorPalette=rgb(7,54,66);rgb(226,15,15);rgb(82,140,67);rgb(196,191,0);rgb(29,111,198);rgb(172,65,213);rgb(101,198,198);rgb(238,232,213);rgb(0,43,54);rgb(209,33,33);rgb(118,226,90);rgb(196,191,0);rgb(37,127,179);rgb(177,108,196);rgb(87,229,229);rgb(253,246,227)
 TabActivityColor=#dc322f
 ShortcutsNoMnemonics=TRUE
+CellWidthScale=1.150000
 

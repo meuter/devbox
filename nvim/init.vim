@@ -16,6 +16,7 @@ set ignorecase
 set smartcase
 set incsearch
 set wrapscan
+set nowrap
 
 " Enable mouse integration
 set mouse=a
@@ -34,8 +35,10 @@ set splitright
 filetype plugin indent on
 autocmd FileType make   setlocal noexpandtab
 
-" Source init.vim whenever it's changed
-autocmd! BufWritePost init.vim,.vimrc source %
+" Source init.vim & reload Airline whenever it's changed
+autocmd! BufWritePost init.vim source %
+autocmd! BufWritePost init.vim :AirlineRefresh
+
 
 " Auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))

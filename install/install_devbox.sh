@@ -6,11 +6,11 @@ source ./authenticate.sh
 ./config_grub.sh
 ./config_sources_list.sh
 ./install_core.sh
-./config_tz.sh 
+./config_tz.sh
 ./install_guest_additions.sh
 ./install_samba.sh
 ./install_zsh.sh
-./install_i3_gaps.sh
+./install_desktop.sh
 ./install_slim.sh
 ./install_neovim.sh
 #./install_vscode.sh
