@@ -12,6 +12,7 @@ source ./authenticate.sh
 ./install_zsh.sh
 ./install_i3_gaps.sh
 ./install_slim.sh
+./install_nvim.sh
 #./install_vscode.sh
 #./install_google_chrome.sh
 ./config_git.sh

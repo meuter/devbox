@@ -41,7 +41,7 @@ autocmd! BufWritePost init.vim,.vimrc source %
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim
     	\ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall 
+    autocmd VimEnter * PlugInstall
 endif
 
 " Load all plugins
@@ -53,7 +53,7 @@ Plug 'https://github.com/ajmwagar/vim-deus.git'
 Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
 Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer' }
+" Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer' }
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/gabesoft/vim-ags.git'
 Plug 'https://github.com/easymotion/vim-easymotion.git'
@@ -80,15 +80,9 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
-
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''

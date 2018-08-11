@@ -13,7 +13,9 @@ URxvt.urlLauncher:          google-chrome
 ! setup font
 URxvt*font:                 xft:Noto\ Mono\ for\ Powerline:pixelsize=14
 URxvt*boldFont:             xft:Noto\ Mono\ for\ Powerline:pixelsize=14
-URxvt*letterSpace:          -1 
+URxvt*letterSpace:          -1
+
+! still having some trouble with these charaters ✘ ⬆ ✹ ✭
 
 ! Improved font rendering
 Xft.dpi:                    112
@@ -23,9 +25,9 @@ Xft.rgba:                   rgb
 Xft.hintstyle:              hintslight
 Xft.lcdfilter:              lcddefault
 
-! display 
+! Display
 ! URxvt*transparent:          true
-! URxvt*shading:              30 
+! URxvt*shading:              30
 URxvt.depth:                32
 URxvt.internalBorder:       0
 
