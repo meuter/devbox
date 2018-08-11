@@ -24,8 +24,7 @@ bindsym Control+q kill
 
 # start rofi
 bindsym Control+space exec rofi -show window
-bindsym F3 exec rofi -show run
-bindsym F4 exec rofi -show drun
+bindsym $mod+space exec rofi -show drun
 
 # focus
 bindsym $mod+Left focus left
@@ -116,10 +115,10 @@ bar {
 }
 
 # no title on windows, simple 1 px border
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 # i3-gaps
-gaps inner 6
+gaps inner 2
 gaps outer 0
 
 # class                 border  backgr. text    indicator child_border

@@ -128,13 +128,28 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://github.com/qpkorr/vim-bufkill.git'
 
      " Global search
-    Plug 'https://github.com/gabesoft/vim-ags.git'
-
-    " Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer' }
+    Plug 'https://github.com/mileszs/ack.vim.git'
 
     " Multiple cursors
     Plug 'https://github.com/terryma/vim-multiple-cursors'
+
+    " Language Support
+    Plug 'https://github.com/sheerun/vim-polyglot.git'
+    Plug 'https://github.com/Shougo/deoplete.nvim'
+    Plug 'https://github.com/tweekmonster/deoplete-clang2.git'
+    Plug 'https://github.com/vim-syntastic/syntastic.git'
+    Plug 'https://github.com/zchee/deoplete-jedi.git'
+
 call plug#end()
+
+
+" Use the silver searcher for grep
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Activate Completion on startup
+let g:deoplete#enable_at_startup = 1
 
 " Everything that's yanked is put in the cliboard + mouse cliboard
 set clipboard+=unnamed

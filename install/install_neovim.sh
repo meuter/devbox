@@ -4,7 +4,7 @@ source ./colors.sh
 
 info "Installing neovim..."
 sudo apt-add-repository -y ppa:neovim-ppa/stable
-sudo apt -y update 
+sudo apt -y update
 sudo apt -y install neovim
 
 info "Configuring NeoVIM as default editor..."
@@ -16,7 +16,9 @@ info "Installing nvim config..."
 mkdir -p ~/.config/nvim/
 ln -s ~/.devbox/nvim/init.vim ~/.config/nvim/init.vim
 
-info "Installing nvim plugs..."
+sudo pip install neovim jedi --upgrade
+sudo pip3 install neovim jedi --upgrade
+sudo apt install -y silversearcher-ag clang
 vim +'PlugInstall' +qa
 
 success "Done!"
