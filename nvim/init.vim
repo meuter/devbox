@@ -279,7 +279,7 @@ map <Leader>gw :Gstatus<cr>
 map <Leader>gb :Gblame<cr>
 
 " configure YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.devbox/nvim/.ycm_extra_conf.py'
 let g:ycm_auto_trigger = 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 0
