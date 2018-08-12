@@ -98,6 +98,19 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall
 endif
 
+
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py
+  endif
+endfunction
+
+
+
 " Load all plugins
 call plug#begin('~/.config/nvim/plugged')
 
@@ -137,10 +150,12 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Language Support
     Plug 'https://github.com/sheerun/vim-polyglot.git'
-    Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'https://github.com/tweekmonster/deoplete-clang2.git'
-    Plug 'https://github.com/vim-syntastic/syntastic.git'
-    Plug 'https://github.com/zchee/deoplete-jedi.git'
+    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+"    Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do' : './install.py --clang-completer' }
+"    Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"    Plug 'https://github.com/tweekmonster/deoplete-clang2.git'
+"    Plug 'https://github.com/vim-syntastic/syntastic.git'
+"    Plug 'https://github.com/zchee/deoplete-jedi.git'
     "Plug 'https://github.com/xolox/vim-misc.git'
     "Plug 'https://github.com/xolox/vim-easytags.git'
 call plug#end()
@@ -269,25 +284,34 @@ map <Leader>gd :Gvdiff<cr>
 map <Leader>gw :Gstatus<cr>
 map <Leader>gb :Gblame<cr>
 
-" not auto insert but select first match in list automatically
-" so that when you press entry it confirms directly the first
-" match
+" configure YouCompleteMe
 set completeopt=menuone,preview,noinsert
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_auto_trigger=1
+let g:ycm_min_num_of_chars_for_completion=2
+let g:ycm_semantic_triggers = {
+	\   'python': [ 're!\w{2}' ]
+	\ }
 
-" the default key bindings for deoplete:
-" <c-n> <c-p> to iterator over suggestions
-" <c-y> to confirm
-" with this you can confirm selected entry with <cr>
+" enter to confirm completion
 function! ConfirmCompletion()
     if pumvisible()
-        return "\<c-y>"
+        if !empty(v:completed_item)
+            return "\<esc>a"
+        else
+            return "\<c-n>\<esc>a"
+        endif
     else
         return "\<cr>"
     endif
 endf
 inoremap <expr> <cr> ConfirmCompletion()
 
+" Goto definition with F12
+nnoremap <F12> :YcmCompleter GoTo<CR>
+inoremap <F12> <Esc>:YcmCompleter GoTo<CR>
+vnoremap <F11> <Esc>:YcmCompleter Goto<CR>
 
-
+" confirugre global search using Ack
 inoremap <C-S-F> <Esc>:Ack 
 nnoremap <C-S-F> :Ack 
