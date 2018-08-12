@@ -288,3 +288,6 @@ endf
 inoremap <expr> <cr> ConfirmCompletion()
 
 
+
+inoremap <C-S-F> <Esc>:Ack 
+nnoremap <C-S-F> :Ack 
