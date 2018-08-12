@@ -141,8 +141,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://github.com/tweekmonster/deoplete-clang2.git'
     Plug 'https://github.com/vim-syntastic/syntastic.git'
     Plug 'https://github.com/zchee/deoplete-jedi.git'
-    Plug 'https://github.com/xolox/vim-misc.git'
-    Plug 'https://github.com/xolox/vim-easytags.git'
+    "Plug 'https://github.com/xolox/vim-misc.git'
+    "Plug 'https://github.com/xolox/vim-easytags.git'
 call plug#end()
 
 
