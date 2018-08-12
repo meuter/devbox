@@ -43,7 +43,8 @@ inoremap    <S-Right>   <Esc>v<Right>
 inoremap    <S-End>     <Esc>v$
 inoremap    <S-Home>    <Esc>v^
 
-nnoremap <silent> <C-c> :BD<cr>
+nnoremap <silent> <C-c> :BD!<cr>
+inoremap <silent> <C-c> <Esc>:BD!<cr>
 
 " CTRL-A is Select all
 noremap <C-A> gggH<C-O>G

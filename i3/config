@@ -15,9 +15,10 @@ set $mod Mod1
 floating_modifier $mod
 
 set $terminal xfce4-terminal --hide-menubar
+set $lxterminal lxterminal
 
 # start a terminal
-bindsym $mod+Return exec $terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym Control+q kill
@@ -138,7 +139,7 @@ bindsym Control+Shift+g exec google-chrome
 bindsym Control+Shift+o exec code
 
 # shortcut edit config
-bindsym Control+$mod+c exec $terminal --working-directory=$HOME/.devbox/ --execute vim
+bindsym Control+$mod+c exec $lxterminal --working-directory=$HOME/.devbox/ --command vim
 
 # config reboot/shutdown/exit shortcut
 set $mode_system System (e)xit, (r)eboot, (s)hutdown
