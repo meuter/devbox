@@ -14,9 +14,6 @@ set $mod Mod1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-set $terminal xfce4-terminal --hide-menubar
-set $lxterminal lxterminal
-
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -139,7 +136,7 @@ bindsym Control+Shift+g exec google-chrome
 bindsym Control+Shift+o exec code
 
 # shortcut edit config
-bindsym Control+$mod+c exec $lxterminal --working-directory=$HOME/.devbox/ --command vim
+bindsym Control+$mod+c exec ~/.devbox/i3/i3-terminal-exec.sh $HOME/.devbox/ vim
 
 # config reboot/shutdown/exit shortcut
 set $mode_system System (e)xit, (r)eboot, (s)hutdown
@@ -156,4 +153,3 @@ bindsym $mod+Pause mode "$mode_system"
 
 # turn on numlock
 exec_always --no-startup-id numlockx on
-
