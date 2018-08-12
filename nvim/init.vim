@@ -146,6 +146,7 @@ call plug#begin('~/.config/nvim/plugged')
      " Global search
     Plug 'https://github.com/mileszs/ack.vim.git'
     Plug 'https://github.com/Valloric/ListToggle.git'
+    Plug 'https://github.com/itchyny/vim-qfedit.git'
 
     " Multiple cursors
     Plug 'https://github.com/terryma/vim-multiple-cursors.git'
@@ -313,13 +314,33 @@ nnoremap <F12> :YcmCompleter GoTo<CR>
 inoremap <F12> <Esc>:YcmCompleter GoTo<CR>
 vnoremap <F11> <Esc>:YcmCompleter Goto<CR>
 
-" confirugre global search using Ack
-inoremap <C-S-F> <Esc>:Ack 
-nnoremap <C-S-F> :Ack 
-
 " Configure Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+" confirugre global search using Ack
+function! GlobalSearch()
+    let g:global_search_query = input('Search: ')
+    exec ':Ack ' . g:global_search_query
+endfunction
+
+inoremap <C-S-F> :call GlobalSearch()<cr>
+nnoremap <C-S-F> <Esc>:call GlobalSearch()<cr>
+
+function! GlobalReplace()
+    if !exists("g:global_search_query")
+        call GlobalSearch()
+    endif
+    let g:global_replace_term = input('Replace by: ')
+    exec ':cfdo %s/' . g:global_search_query . '/' . g:global_replace_term . '/gc | update'
+    unlet g:global_search_query
+    unlet g:global_replace_term
+    exec ':QToggle'
+endfunction
+
+inoremap <C-S-H> :call GlobalReplace()<cr>
+nnoremap <C-S-H> <Esc>:call GlobalReplace()<cr>
 
