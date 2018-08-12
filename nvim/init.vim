@@ -151,13 +151,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Language Support
     Plug 'https://github.com/sheerun/vim-polyglot.git'
     Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-"    Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do' : './install.py --clang-completer' }
-"    Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"    Plug 'https://github.com/tweekmonster/deoplete-clang2.git'
-"    Plug 'https://github.com/vim-syntastic/syntastic.git'
-"    Plug 'https://github.com/zchee/deoplete-jedi.git'
-    "Plug 'https://github.com/xolox/vim-misc.git'
-    "Plug 'https://github.com/xolox/vim-easytags.git'
+    Plug 'https://github.com/vim-syntastic/syntastic.git'
 call plug#end()
 
 
@@ -285,7 +279,13 @@ map <Leader>gw :Gstatus<cr>
 map <Leader>gb :Gblame<cr>
 
 " configure YouCompleteMe
-set completeopt=menuone,preview,noinsert
+
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_always_populate_location_list = 1 "default 0
+let g:ycm_open_loclist_on_ycm_diags = 1 "default 1P
+
+
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_auto_trigger=1
 let g:ycm_min_num_of_chars_for_completion=2
@@ -315,3 +315,16 @@ vnoremap <F11> <Esc>:YcmCompleter Goto<CR>
 " confirugre global search using Ack
 inoremap <C-S-F> <Esc>:Ack 
 nnoremap <C-S-F> :Ack 
+
+" Configure Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = """
+let g:syntastic_warning_symbol = "⚠⚠""
+
