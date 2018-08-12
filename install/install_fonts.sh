@@ -3,6 +3,7 @@
 source ./colors.sh
 
 info "Installing fonts..."
+sudo apt install -y fontconfig
 pushd .
 mkdir -p ~/.local/share/fonts/
 cd ~/.local/share/fonts/
