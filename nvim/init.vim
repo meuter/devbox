@@ -113,14 +113,14 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://github.com/tpope/vim-fugitive.git'
 
     " Side bar with pretty icons
-    Plug 'https://github.com/scrooloose/nerdtree'
+    Plug 'https://github.com/scrooloose/nerdtree.git'
     Plug 'https://github.com/ryanoasis/vim-devicons.git'
 
     " Move lines around
     Plug 'https://github.com/matze/vim-move.git'
 
     " Commenting stuff
-    Plug 'https://github.com/tpope/vim-commentary'
+    Plug 'https://github.com/tpope/vim-commentary.git'
 
     " Fuzzy file search
     Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
@@ -133,7 +133,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://github.com/Valloric/ListToggle.git'
 
     " Multiple cursors
-    Plug 'https://github.com/terryma/vim-multiple-cursors'
+    Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 
     " Language Support
     Plug 'https://github.com/sheerun/vim-polyglot.git'
@@ -141,7 +141,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://github.com/tweekmonster/deoplete-clang2.git'
     Plug 'https://github.com/vim-syntastic/syntastic.git'
     Plug 'https://github.com/zchee/deoplete-jedi.git'
-
+    Plug 'https://github.com/xolox/vim-misc.git'
+    Plug 'https://github.com/xolox/vim-easytags.git'
 call plug#end()
 
 
@@ -267,4 +268,23 @@ autocmd BufWinLeave * call clearmatches()
 map <Leader>gd :Gvdiff<cr>
 map <Leader>gw :Gstatus<cr>
 map <Leader>gb :Gblame<cr>
+
+" not auto insert but select first match in list automatically
+" so that when you press entry it confirms directly the first
+" match
+set completeopt=menuone,preview,noinsert
+
+" the default key bindings for deoplete:
+" <c-n> <c-p> to iterator over suggestions
+" <c-y> to confirm
+" with this you can confirm selected entry with <cr>
+function! ConfirmCompletion()
+    if pumvisible()
+        return "\<c-y>"
+    else
+        return "\<cr>"
+    endif
+endf
+inoremap <expr> <cr> ConfirmCompletion()
+
 
