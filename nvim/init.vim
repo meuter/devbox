@@ -1,6 +1,7 @@
-" Set relative line number
+" Set relative line number & gutter
 set number
 set relativenumber
+set signcolumn=yes
 
 " Reload files when changed behind vim's back
 set autoread
@@ -105,7 +106,7 @@ function! BuildYCM(info)
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
-    !./install.py
+    !./install.py --clang-completer --system-libclang
   endif
 endfunction
 
@@ -124,6 +125,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Git support
     Plug 'https://github.com/tpope/vim-fugitive.git'
+    Plug 'https://github.com/airblade/vim-gitgutter'
 
     " Side bar with pretty icons
     Plug 'https://github.com/scrooloose/nerdtree.git'
@@ -263,7 +265,6 @@ nnoremap <C-j> 5j
 nnoremap <C-y> 5<C-y>
 nnoremap <C-e> 5<C-e>
 
-
 " Highlight unwanted spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -272,25 +273,24 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-
 " Key Bindings for git
 map <Leader>gd :Gvdiff<cr>
 map <Leader>gw :Gstatus<cr>
 map <Leader>gb :Gblame<cr>
 
 " configure YouCompleteMe
-
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
+let g:ycm_auto_trigger = 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 1 "default 1P
-
-
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_auto_trigger=1
+"let g:ycm_auto_trigger=1
 let g:ycm_min_num_of_chars_for_completion=2
 let g:ycm_semantic_triggers = {
-	\   'python': [ 're!\w{2}' ]
+	\   'python': [ 're!\w{2}' ],
+	\   'c': [ 're!\w{2}' ]
 	\ }
 
 " enter to confirm completion
@@ -317,14 +317,8 @@ inoremap <C-S-F> <Esc>:Ack
 nnoremap <C-S-F> :Ack 
 
 " Configure Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = """
-let g:syntastic_warning_symbol = "⚠⚠""
 
