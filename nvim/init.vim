@@ -112,6 +112,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://github.com/sheerun/vim-polyglot.git'
     Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
     Plug 'https://github.com/vim-syntastic/syntastic.git'
+    Plug 'https://github.com/Chiel92/vim-autoformat.git'
 call plug#end()
 
 
@@ -162,7 +163,7 @@ let g:airline_symbols.linenr = ''
 
 " Ctrl+p for fuzzy search ('r' means start at the .git)
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_working_path_mode = 'ra'
 
 " Remap leader key
@@ -187,12 +188,11 @@ map <leader>s :split<cr>
 map <leader>c gcc
 autocmd FileType c setlocal commentstring=\/\/\ %s
 
-
 " ',v' to create a vsplit
 map <leader>v :vsplit<cr>
 
-" ',f' search workspace
-map <leader>f :Ags
+" ',f' to autformat code
+map <leader>f :Autoformat<cr>
 
 " turn on highlight of the current line
 set cursorline
