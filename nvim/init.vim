@@ -19,58 +19,12 @@ set incsearch
 set wrapscan
 set nowrap
 
-" Select using shift arrow
-noremap     <S-Down>    v<Down>
-noremap     <S-Up>      v<Up>
-noremap     <S-Left>    v<Left>
-noremap     <S-Right>   v<Right>
-noremap     <S-End>     v$
-noremap     <S-Home>    v^
-
-vnoremap    <S-Up>      <Up>
-vnoremap    <S-Down>    <Down>
-vnoremap    <S-Left>    <Left>
-vnoremap    <S-Right>   <Right>
-
-vnoremap    <Up>        <Esc><Up>
-vnoremap    <Down>      <Esc><Down>
-vnoremap    <Left>      <Esc><Left>
-vnoremap    <Right>     <Esc><Right>
-
-inoremap    <S-Down>    <Esc>v<Down>
-inoremap    <S-Up>      <Esc>v<Up>
-inoremap    <S-Left>    <Esc>v<Left>
-inoremap    <S-Right>   <Esc>v<Right>
-inoremap    <S-End>     <Esc>v$
-inoremap    <S-Home>    <Esc>v^
-
 nnoremap <silent> <C-c> :BD!<cr>
 inoremap <silent> <C-c> <Esc>:BD!<cr>
-
-" CTRL-A is Select all
-noremap <C-A> gggH<C-O>G
-inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-cnoremap <C-A> <C-C>gggH<C-O>G
-onoremap <C-A> <C-C>gggH<C-O>G
-snoremap <C-A> <C-C>gggH<C-O>G
-xnoremap <C-A> <C-C>ggVG
 
 " When switching back to Normal mode from Insert mode
 " prevent the cursor from moving to the left, grrr
 inoremap <Esc> <Esc><Right>
-
-" CTRL-Z is Undo; not in cmdline though
-noremap <C-Z> u
-inoremap <C-Z> <C-O>u
-
-" CTRL-R to redo
-noremap <C-R> <C-R>
-inoremap <C-R> <C-O><C-R>
-
-" CTRL+S to save
-inoremap <C-s> <Esc>:w<cr>a
-nnoremap <C-s> :w<cr>
-vmap <C-s> <esc>:w<CR>v
 
 " Enable mouse integration
 set mouse=a
@@ -122,6 +76,9 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Dim inactive windows
     Plug 'https://github.com/blueyed/vim-diminactive.git'
+
+    " Highlight trailing whitespace
+    " Plug 'https://github.com/bronson/vim-trailing-whitespace.git'
 
     " Git support
     Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -226,23 +183,26 @@ map <leader>t :terminal<cr>
 " ',s' to create a split
 map <leader>s :split<cr>
 
+" ',c' to create a split
+map <leader>c gcc
+
 " ',v' to create a vsplit
 map <leader>v :vsplit<cr>
 
 " ',f' search workspace
 map <leader>f :Ags
 
-" commenting out stuff
-map <leader>c gcc
-
 " turn on highlight of the current line
 set cursorline
 
 " terminal starts in insert mode
-autocmd TermOpen,BufWinEnter,WinEnter term://* startinsert
+autocmd BufWinEnter,WinEnter term://* startinsert
 
 " terminal closes automatically when exit
-autocmd TermClose term://* :q 
+autocmd TermClose term://* :q!
+
+" disable line number in terminal mode
+autocmd TermOpen term://* startinsert | setlocal nonumber norelativenumber signcolumn=no
 
 
 " esc configure to switch to normal mode (for copy paste, etc...)
@@ -255,16 +215,10 @@ tnoremap <C-w><Left> <C-\><C-n><C-w><Left>
 tnoremap <C-w><Right> <C-\><C-n><C-w><Right>
 
 " Use ctrl+kj to just 5 lines at a time
-nnoremap <C-k> 5k
-nnoremap <C-j> 5j
-nnoremap <C-y> 5<C-y>
-nnoremap <C-e> 5<C-e>
-
-" Use ctrl+kj to just 5 lines at a time
-nnoremap <C-k> 5k
-nnoremap <C-j> 5j
-nnoremap <C-y> 5<C-y>
-nnoremap <C-e> 5<C-e>
+nnoremap <C-k> 15k
+nnoremap <C-j> 15j
+vnoremap <C-k> 15k
+vnoremap <C-j> 15j
 
 " Highlight unwanted spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -274,7 +228,7 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" Key Bindings for git
+" " Key Bindings for git
 map <Leader>gd :Gvdiff<cr>
 map <Leader>gw :Gstatus<cr>
 map <Leader>gb :Gblame<cr>
@@ -343,4 +297,7 @@ endfunction
 
 inoremap <C-S-H> :call GlobalReplace()<cr>
 nnoremap <C-S-H> <Esc>:call GlobalReplace()<cr>
+
+" disable auto comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
