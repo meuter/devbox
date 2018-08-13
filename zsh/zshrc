@@ -87,3 +87,7 @@ bindkey '^P' fzf-cd-widget
 
 # disable control flow (ctrl+s, ctrl+q)
 stty -ixon ixoff
+
+# make caps lock act as esc
+setxkbmap -option caps:escape
+
