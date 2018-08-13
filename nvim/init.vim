@@ -97,8 +97,9 @@ call plug#begin('~/.config/nvim/plugged')
     " Fuzzy file search
     Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 
-    " Kill windows without losing split
+    " Window managment
     Plug 'https://github.com/qpkorr/vim-bufkill.git'
+    Plug 'https://github.com/troydm/zoomwintab.vim.git'
 
      " Global search
     Plug 'https://github.com/mileszs/ack.vim.git'
