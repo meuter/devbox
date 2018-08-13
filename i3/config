@@ -44,6 +44,8 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym F11 fullscreen toggle
+bindsym $mod+F11 bar mode toggle
+
 
 # switch to workspace
 bindsym $mod+1 workspace 1
