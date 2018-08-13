@@ -77,8 +77,8 @@ call plug#begin('~/.config/nvim/plugged')
     " Dim inactive windows
     Plug 'https://github.com/blueyed/vim-diminactive.git'
 
-    " Highlight trailing whitespace
-    " Plug 'https://github.com/bronson/vim-trailing-whitespace.git'
+    " Remember cursor position when editing a file
+    Plug 'https://github.com/farmergreg/vim-lastplace'
 
     " Git support
     Plug 'https://github.com/tpope/vim-fugitive.git'
