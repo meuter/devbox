@@ -100,6 +100,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Window managment
     Plug 'https://github.com/qpkorr/vim-bufkill.git'
     Plug 'https://github.com/troydm/zoomwintab.vim.git'
+    Plug 'https://github.com/mhinz/vim-startify.git'
 
      " Global search
     Plug 'https://github.com/mileszs/ack.vim.git'
@@ -307,3 +308,41 @@ nnoremap <C-S-H> <Esc>:call GlobalReplace()<cr>
 " disable auto comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" select using shift + arrow
+nnoremap <s-right> v<right>
+xnoremap <s-right> <right>
+inoremap <s-right> <c-o>v<right>
+nnoremap <s-left> v<left>
+xnoremap <s-left> <left>
+inoremap <s-left> <c-o>v<left>
+nnoremap <s-up> v<up>
+xnoremap <s-up> <up>
+inoremap <s-up> <c-o>v<up>
+nnoremap <s-down> v<down>
+xnoremap <s-down> <down>
+inoremap <s-down> <c-o>v<down>
+nnoremap <c-s-right> ve
+xnoremap <c-s-right> e
+inoremap <c-s-right> <c-o>ve
+nnoremap <c-s-left> vb
+xnoremap <c-s-left> b
+inoremap <c-s-left> <c-o>vb
+nnoremap <s-pageup> v10<up>
+xnoremap <s-pageup> 10<up>
+inoremap <s-pageup> <c-o>v10<up>
+nnoremap <s-pagedown> v10<down>
+xnoremap <s-pagedown> 10<down>
+inoremap <s-pagedown> <c-o>v10<down>
+nmap <s-home> v<home>
+nmap <s-end> v<end>
+nnoremap <c-s-home> vgg0
+nnoremap <c-s-end> vG<end>
+
+
+" exit VISUAL when shift not held.
+xnoremap <right> <esc><right>
+xnoremap <left> <esc><left>
+xnoremap <up> <esc><up>
+xnoremap <down> <esc><down>
+xnoremap <c-right> <esc>e
+xnoremap <c-left> <esc>b
