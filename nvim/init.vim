@@ -185,6 +185,8 @@ map <leader>s :split<cr>
 
 " ',c' to create a split
 map <leader>c gcc
+autocmd FileType c setlocal commentstring=\/\/\ %s
+
 
 " ',v' to create a vsplit
 map <leader>v :vsplit<cr>
