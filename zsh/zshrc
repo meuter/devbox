@@ -82,6 +82,7 @@ bindkey -s '^V' 'vim $(fzf)^M'
 
 
 # ctrl+p natigate directories with fzf
+export FZF_DEFAULT_OPTS='--height 15% --reverse'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^P' fzf-cd-widget
 
