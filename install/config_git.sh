@@ -44,8 +44,11 @@ git config --global alias.meld "difftool -d"
 # review incoming changes (without merging them in the local workspace)
 git config --global alias.revin "!git remote update -p; git difftool -d @{u}"
 
-# cache credentials  
+# cache credentials
 git config --global credential.helper cache
+
+# set vim as the default commit editor, not matter what alternative says
+git config --global core.editor "vim"
 
 success "Done!"
 
