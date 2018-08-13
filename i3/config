@@ -128,7 +128,7 @@ client.unfocused        #586e75 #586e75 #586e75 #586e75   #586e75
 
 
 # wallpaper
-exec_always feh --bg-scale ~/.devbox/wallpapers/sunset.jpg
+exec_always feh --bg-scale ~/.devbox/wallpapers/abstract_gray_red.jpg
 
 # disable mouse focus
 focus_follows_mouse no
