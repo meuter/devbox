@@ -163,7 +163,7 @@ let g:airline_symbols.linenr = ''
 
 " Ctrl+p for fuzzy search ('r' means start at the .git)
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 
 " Remap leader key
@@ -241,15 +241,14 @@ let g:ycm_global_ycm_extra_conf = '~/.devbox/nvim/.ycm_extra_conf.py'
 let g:ycm_auto_trigger = 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_always_populate_location_list = 1 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 1 "default 1P
 let g:ycm_autoclose_preview_window_after_completion=1
-"let g:ycm_auto_trigger=1
 let g:ycm_min_num_of_chars_for_completion=2
 let g:ycm_semantic_triggers = {
 	\   'python': [ 're!\w{2}' ],
 	\   'c': [ 're!\w{2}' ]
 	\ }
+
 
 " enter to confirm completion
 function! ConfirmCompletion()
@@ -265,10 +264,14 @@ function! ConfirmCompletion()
 endf
 inoremap <expr> <cr> ConfirmCompletion()
 
+" configure completion pop
+set pumheight=10
+highlight Pmenu ctermbg=white
+
 " Goto definition with F12
 nnoremap <F12> :YcmCompleter GoTo<CR>
 inoremap <F12> <Esc>:YcmCompleter GoTo<CR>
-vnoremap <F11> <Esc>:YcmCompleter Goto<CR>
+vnoremap <F12> <Esc>:YcmCompleter Goto<CR>
 
 " Configure Syntastic
 let g:syntastic_always_populate_loc_list = 1
