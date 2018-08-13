@@ -118,7 +118,7 @@ bar {
 for_window [class="^.*"] border pixel 2
 
 # i3-gaps
-gaps inner 2
+gaps inner 0
 gaps outer 0
 
 # class                 border  backgr. text    indicator child_border
