@@ -117,7 +117,7 @@ bar {
 }
 
 # no title on windows, simple 1 px border
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 
 # i3-gaps
 gaps inner 0
@@ -189,3 +189,5 @@ mode "$mode_samoa" {
     bindsym Return mode "default"
 }
 
+
+exec --no-startup-id compton --config ~/.devbox/compton/compton.conf
