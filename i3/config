@@ -102,7 +102,7 @@ bindsym $mod+r mode "resize"
 # status bar
 bar {
         status_command ~/.config/i3/bumblebee-status/bumblebee-status -m cpu memory date time -p root.path=/ time.format="%H:%M:%S" date.format="%a, %b %d %Y" -t solarized-powerline
-        font pango:NotoMono Nerd Font Mono 10
+        font pango:NotoMono Nerd Font Mono 11
         position top
 
         colors {
@@ -159,35 +159,5 @@ bindsym $mod+Pause mode "$mode_system"
 # turn on numlock
 exec_always --no-startup-id numlockx on
 
-# startup minicom
-bindsym Control+Shift+m exec --no-startup-id i3-msg 'workspace 1:Web; exec /usr/bin/firefox'
-
-# spica shortcuts (vscode, Qb terminal, etc)
-bindsym $mod+p mode "$mode_spica"
-set $mode_spica SPICA shortcuts: (o) editor emv-nfc | (p) terminal emv-nfc | (q) terminal Qb
-mode "$mode_spica" {
-	bindsym o exec "code /home/cme/workspace/spica/native/emv-nfc"; mode "default"; 
-	bindsym p exec "rxvt -cd /home/cme/workspace/spica/native/emv-nfc/ -e $SHELL"; mode "default";
-    bindsym v exec "rxvt -cd /home/cme/workspace/spica/native/emv-nfc/ -e vim"; mode "default";
-    bindsym q exec "rxvt -cd /home/cme/workspace/spica/test/QbPlatform/ -e $SHELL -c 'source ./setpath.sh;cd test_cases/emv_L2/NFC;$SHELL -i'"; mode "default";
-	bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
-
-
-# samoa shortcuts (vscode, Qb terminal, etc)
-bindsym $mod+m mode "$mode_samoa"
-set $mode_samoa SAMOA shortcuts: (o) editor emv-nfc | (p) terminal emv-nfc | (t) editor Qb | (q) terminal Qb | (b) terminal samoa-bot | (v) vim emv_nfc
-mode "$mode_samoa" {
-	bindsym o exec "code /home/cme/workspace/samoa/native/emv-nfc"; mode "default"; 
-    bindsym v exec "rxvt -cd /home/cme/workspace/samoa/native/emv-nfc/ -e vim"; mode "default";
-	bindsym p exec "rxvt -cd /home/cme/workspace/samoa/native/emv-nfc/ -e $SHELL"; mode "default";
-	bindsym t exec "code /home/cme/workspace/samoa/test/QbPlatform/"; mode "default"; 
-	bindsym q exec "rxvt -cd /home/cme/workspace/samoa/test/QbPlatform/ -e $SHELL -c 'source ./setpath.sh;cd test_cases/emv_L2/NFC;$SHELL -i'"; mode "default";
-	bindsym b exec "rxvt -cd /home/cme/workspace/samoa/test/samoa-bot/scripts -e $SHELL -c 'source ./set_python_path.sh; cd emv; $SHELL -i'"; mode "default";
-	bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
-
-
+# start compositor to dim unfocused window and fade in/out of new windows
 exec --no-startup-id compton --config ~/.devbox/compton/compton.conf

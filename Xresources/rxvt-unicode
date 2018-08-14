@@ -11,10 +11,10 @@ URxvt.matcher.button:       C1
 URxvt.urlLauncher:          google-chrome
 
 ! setup font
-URxvt*font:                 xft:NotoMono Nerd Font Mono:style=book:size=10
-URxvt*boldFont:             xft:NotoMono Nerd Font Mono:style=bold:size=10
-URxvt*italicFont:           xft:NotoMono Nerd Font Mono:style=italic:size=10
-URxvt*boldItalicFont:       xft:NotoMono Nerd Font Mono:style=bolditalic:size=10
+URxvt*font:                 xft:NotoMono Nerd Font Mono:style=book:size=11
+URxvt*boldFont:             xft:NotoMono Nerd Font Mono:style=bold:size=11
+URxvt*italicFont:           xft:NotoMono Nerd Font Mono:style=italic:size=11
+URxvt*boldItalicFont:       xft:NotoMono Nerd Font Mono:style=bolditalic:size=11
 
 ! Improved font rendering
 Xft.autohint:               0
