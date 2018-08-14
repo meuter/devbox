@@ -20,7 +20,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-export BULLETTRAIN_PROMPT_ORDER=(time virtualenv status custom context dir git cmd_exec_time)
+export BULLETTRAIN_PROMPT_ORDER=(time virtualenv status custom dir git cmd_exec_time)
 export BULLETTRAIN_PROMPT_CHAR=✭
 
 # User configuration
