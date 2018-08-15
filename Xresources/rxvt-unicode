@@ -22,7 +22,7 @@ Xft.dpi:                    96
 Xft.antialias:              true
 Xft.hinting:                true
 Xft.rgba:                   subpixel
-Xft.hintstyle:              hintslight
+Xft.hintstyle:              hintsinone
 Xft.lcdfilter:              lcddefault
 
 ! Display
