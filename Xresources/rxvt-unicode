@@ -19,11 +19,11 @@ URxvt*boldItalicFont:       xft:NotoMono Nerd Font Mono:style=bolditalic:size=11
 ! Improved font rendering
 Xft.autohint:               0
 Xft.dpi:                    96
-Xft.antialias:              true
-Xft.hinting:                true
-Xft.rgba:                   subpixel
+Xft.antialias:              1
+Xft.hinting:                1
 Xft.hintstyle:              hintsinone
 Xft.lcdfilter:              lcddefault
+Xft.rgba:                   none
 
 ! Display
 ! URxvt*transparent:          true
