@@ -13,5 +13,11 @@
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "window.zoomLevel": 1,
-    "telemetry.enableCrashReporter": false
+    "telemetry.enableCrashReporter": false,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "window.menuBarVisibility": "toggle",
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/bin/vim",
+    "terminal.integrated.rendererType": "dom"
 }
