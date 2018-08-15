@@ -100,7 +100,6 @@ call plug#begin('~/.config/nvim/plugged')
     " Window managment
     Plug 'https://github.com/qpkorr/vim-bufkill.git'
     Plug 'https://github.com/troydm/zoomwintab.vim.git'
-    Plug 'https://github.com/mhinz/vim-startify.git'
 
      " Global search
     Plug 'https://github.com/mileszs/ack.vim.git'
