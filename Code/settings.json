@@ -17,7 +17,5 @@
     "editor.minimap.enabled": false,
     "breadcrumbs.enabled": false,
     "window.menuBarVisibility": "toggle",
-    "vim.enableNeovim": true,
-    "vim.neovimPath": "/usr/bin/vim",
     "terminal.integrated.rendererType": "dom"
 }
