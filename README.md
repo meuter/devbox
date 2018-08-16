@@ -9,10 +9,11 @@ I do mostly C/C++, python, and the occasional javascript and go. Here is a small
 | Component        | Choice  | Reason |
 | ---------------- | ------- | ------ |
 | Distro           | [Ubuntu 18.04.01 server](https://www.ubuntu.com/download/server) | easy to install, well documented, familiar |
-| Desktop          | [i3-gaps](https://github.com/Airblader/i3) with [bumblebee-status](https://github.com/tobi-wan-kenobi/bumblebee-status) and custom config | minimalistic, configurable, keyboard based |
+| Desktop          | custom fork of [i3](https://github.com/meuter/i3) with [bumblebee-status](https://github.com/tobi-wan-kenobi/bumblebee-status) and custom config | minimalistic, configurable, keyboard based |
 | Launcher         | [rofi](https://github.com/DaveDavenport/rofi) | keyboard based, prettier that dmenu |
 | Terminal         | [rxvt-unicode](https://wiki.archlinux.org/index.php/rxvt-unicode) with custom config | minimalistic, configurable |
-| Dev. Editor      | [Visual Studio Code](https://code.visualstudio.com/) with some custom extensions | user friendly, extensible, multi-language, __not__ vim 😂|
+| Dev. Editor (1)  | [Visual Studio Code](https://code.visualstudio.com/) with some custom extensions | user friendly, extensible, multi-language |
+| Dev. Editor (2)  | [NeoVIM](https://neovim.io/) with custom [vimrc](https://github.com/meuter/devbox/blob/master/nvim/init.vim) | __not__ user friendly, extensible, multi-language |
 | Browser          | [Google Chrome](https://www.google.com/chrome/) | chrome dev tools |
 | Shell            | [oh-my-zsh](https://ohmyz.sh/) with [bullet-train](https://github.com/caiogondim/bullet-train.zsh) | theming, improved tab completion over bash |
 | Display Manager  | [slim](https://wiki.archlinux.org/index.php/SLiM) with some [custom themes](https://github.com/adi1090x/slim_themes) | tiny footprint, easy to configure |
@@ -40,17 +41,23 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
         - configure netmask 192.168.56.0/24 (same assumption, adapt otherwise)
 
 5. reboot the VM
-6. clone the project and run the main install script:
+6. select "devices> install guest additions..." in virtualbox menu to load in the guest addition ISO.
+7. clone the project and run the main install script:
     ```
     git clone --depth=1 https://github.com/meuter/devbox ~/.devbox/
     cd ~/.devbox/install/ 
     ./install_dev_box.sh
     ```
 
-   The script will prompt you to select the timezone (for ntp sync), and a little later, 
-   it will prompt you to enter and confirm your samba password (to share your home over 
-   samba in the guest). The install script will then continue until completion without user interaction. The VM will reboot automatically at the end.
-7. Start coding 🤓
+   The script will prompt you to enter your password and then proceed with the installation and configuration
+   of all the necessary packages. When finished, the VM will reboot automatically at the end.
+   
+8. Start coding 🤓
+9. [optional] if you want to autologin on boot, run the following script:
+    ```
+    cd ~/.devbox/install/
+    ./config_autologin.sh
+    ```
 
 # Usage
 
@@ -59,21 +66,22 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 | key          | function |
 | ------------ | ----- |
 | f11 | full screen focussed window |
+| ctrl+f11 | toggle status bar visibility |
 | alt+\<arrow\> | move focus | 
 | alt+shift+\<arrow\> | move window |
 | alt+\<num\> | select worspace |
 | control+shift+\<arrow\> | select next/prev workspace |
-| control+space | rofi show windows |
-| F2 exec rofi | rofi run | 
-| F3 exec rofi | rofi desktop run |
+| control+space | select window using rofi |
+| alt+space | run command using rofi |
 | alt+pause s  | shutdown |
 | alt+pause r  | reboot |
 | alt+pause e  | logout |
 | alt+enter    | open terminal |
 | ctrl+shift+g | open chrome |
 | ctrl+shift+o | open vscode |
-| ctrl+shift+o | open thunar |
-| ctrl+alt+c   | edit devbox |
+| ctrl+shift+t | open thunar |
+| ctrl+alt+c   | edit devbox in vim |
+| alt+n | rename current workspace |
 
 ## Network:
 
