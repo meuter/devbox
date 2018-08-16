@@ -19,6 +19,5 @@ add_to_xresource() {
 
 add_to_xresource .devbox/Xresources/rxvt-unicode
 add_to_xresource .devbox/Xresources/colors
-xrdb ~/.Xresources
 
 success "Done!"
