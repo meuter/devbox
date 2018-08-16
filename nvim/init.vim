@@ -164,18 +164,43 @@ set background=dark
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_theme='molokai'
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#ycm = 0
+let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1
 let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.paste = 'p'
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr = ''
+let g:airline_section_error = ''
+let g:airline_section_warning = ''
+let g:airline_section_z = ''
+
+" Configure tab bar
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <c-w>1 <Plug>AirlineSelectTab1
+nmap <c-w>2 <Plug>AirlineSelectTab2
+nmap <c-w>3 <Plug>AirlineSelectTab3
+nmap <c-w>4 <Plug>AirlineSelectTab4
+nmap <c-w>5 <Plug>AirlineSelectTab5
+nmap <c-w>6 <Plug>AirlineSelectTab6
+nmap <c-w>7 <Plug>AirlineSelectTab7
+nmap <c-w>8 <Plug>AirlineSelectTab8
+nmap <c-w>9 <Plug>AirlineSelectTab9
+nmap <c-x> <Plug>AirlineSelectNextTab
 
 " Ctrl+p for fuzzy search ('r' means start at the .git)
 let g:ctrlp_map = '<c-p>'
@@ -189,7 +214,7 @@ let mapleader = ","
 map <leader>b :NERDTreeToggle<cr>
 
 " ',n' to navigate using tagbar
-map <leader>n :TagbarOpenAutoClose<cr>
+map <silent> <leader>n :TagbarOpenAutoClose<cr>
 let g:tagbar_autofocus = 1
 let g:tagbar_left = 1
 let g:easytags_async = 1
@@ -264,7 +289,7 @@ autocmd BufWinLeave * call clearmatches()
 
 " " Key Bindings for git
 map <Leader>gd :Gvdiff<cr>
-map <Leader>gw :Gstatus<cr>
+map <Leader>gs :Gstatus<cr>
 map <Leader>gb :Gblame<cr>
 
 " configure YouCompleteMe
@@ -376,3 +401,6 @@ xnoremap <up> <esc><up>
 xnoremap <down> <esc><down>
 xnoremap <c-right> <esc>e
 xnoremap <c-left> <esc>b
+
+
+map <c-t> :tabnew<cr>
