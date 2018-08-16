@@ -125,6 +125,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
     Plug 'https://github.com/vim-syntastic/syntastic.git'
     Plug 'https://github.com/Chiel92/vim-autoformat.git'
+    Plug 'https://github.com/ericcurtin/CurtineIncSw.vim'
 call plug#end()
 
 
@@ -205,6 +206,15 @@ map <leader>v :vsplit<cr>
 
 " ',f' to autformat code
 map <leader>f :Autoformat<cr>
+
+" ',tr' to trim whitespace
+map <leader>tr g_ld$
+
+" ',tra' to trim whitespace in all file
+map <leader>tra :%norm! g_ld$<cr>
+
+" ',o' switch between .h and .c/cpp
+map <leader>o :call CurtineIncSw()<cr>
 
 " turn on highlight of the current line
 set cursorline
