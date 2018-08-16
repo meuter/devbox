@@ -43,16 +43,27 @@ set splitright
 filetype plugin indent on
 autocmd FileType make   setlocal noexpandtab
 
-" Source init.vim & reload Airline whenever it's changed
-autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim | AirlineRefresh
+if has('nvim')
+    " Source init.vim & reload Airline whenever it's changed
+    autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim | AirlineRefresh
 
-" Auto-install vim-plug
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim
-    	\ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall
+    " Auto-install vim-plug
+    if empty(glob('~/.config/nvim/autoload/plug.vim'))
+        silent !curl -fLo ~/.config/nvim/autoload/plug.vim
+            \ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall
+    endif
+else
+    " Source init.vim & reload Airline whenever it's changed
+    autocmd! BufWritePost .vimrc source ~/.vimrc | AirlineRefresh
+
+    " Auto-install vim-plug
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim
+            \ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall
+    endif
 endif
-
 
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -201,12 +212,13 @@ set cursorline
 " terminal starts in insert mode
 autocmd BufWinEnter,WinEnter term://* startinsert
 
-" terminal closes automatically when exit
-autocmd TermClose term://* :q!
+if has('nvim')
+    " terminal closes automatically when exit
+    autocmd TermClose term://* :q!
 
-" disable line number in terminal mode
-autocmd TermOpen term://* startinsert | setlocal nonumber norelativenumber signcolumn=no
-
+    " disable line number in terminal mode
+    autocmd TermOpen term://* startinsert | setlocal nonumber norelativenumber signcolumn=no
+endif
 
 " esc configure to switch to normal mode (for copy paste, etc...)
 tnoremap <Esc> <C-\><C-n>
