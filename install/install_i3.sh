@@ -33,3 +33,6 @@ ln -s ~/.devbox/bumblebee-theme/greyish.json ~/.config/i3/bumblebee-status/theme
 ln -s ~/.devbox/bumblebee-theme/awesome-fonts-square.json ~/.config/i3/bumblebee-status/themes/icons/
 echo '#include ".devbox/Xresources/rofi"' >> ~/.Xresources
 
+# allow i3 to shutdown/reboot the machine
+sudo cp ~/.devbox/polkit/org.freedesktop.login1.policy /usr/share/polkit-1/actions/
+
