@@ -16,6 +16,7 @@
     "telemetry.enableCrashReporter": false,
     "editor.minimap.enabled": false,
     "breadcrumbs.enabled": false,
-    "window.menuBarVisibility": "toggle",
-    "terminal.integrated.rendererType": "dom"
+    "window.menuBarVisibility": "hidden",
+    "terminal.integrated.rendererType": "dom",
+    "cmake.configureOnOpen": true
 }
