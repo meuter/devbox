@@ -115,14 +115,5 @@ Git is configured with the following git aliase:
 - __(2)__ needs the current branch to track some remote branch
 - __(3)__ meld is configured as the default git difftool.
 
-## Screenshots
 
-### Login Screen
-![screenshot0.jpg](/screenshots/screenshot0.jpg?raw=true)
-
-### Empty desktop
-![screenshot1.jpg](/screenshots/screenshot1.jpg?raw=true)
-
-### Some applications open
-![screenshot2.jpg](/screenshots/screenshot2.jpg?raw=true)
 
