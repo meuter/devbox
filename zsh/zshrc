@@ -70,17 +70,8 @@ logcat() { python ~/.devbox/utils/colored-logcat.py $@ }
 # one history per shell
 unsetopt share_history
 
-# ctrl+h to go home
-function gohome {
-    echo
-    cd ~
-    zle reset-prompt
-}
-zle -N gohome
-bindkey '^H' gohome
-
 bindkey -s '^V' 'vim $(fzf)^M'
-
+bindkey '^H' backward-kill-word
 
 # ctrl+p natigate directories with fzf
 export FZF_DEFAULT_OPTS='--height 15% --reverse'
@@ -92,4 +83,5 @@ stty -ixon ixoff
 
 # make caps lock act as esc
 setxkbmap -option caps:escape
+
 
