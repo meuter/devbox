@@ -9,7 +9,7 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
                     libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
                     libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev\
                     autoconf libxcb-xrm0 libxcb-xrm-dev automake numlockx \
-		            xclip feh rofi xinit x11-xserver-utils i3\
+		            xclip feh rofi xinit x11-xserver-utils i3 xdotool\
 		            python-psutil lxappearance compton jq zenity
 
 # install my fork of i3 without the 1px border around the status bar
