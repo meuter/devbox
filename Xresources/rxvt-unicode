@@ -6,7 +6,7 @@ URxvt*scrollTtyOutput:      false
 URxvt*scrollTtyKeypress:    true
 
 ! open links with chrome
-URxvt.perl-ext-common:      default,matcher
+URxvt.perl-ext-common:      default,matcher,font-size
 URxvt.matcher.button:       C1
 URxvt.urlLauncher:          google-chrome
 
@@ -41,3 +41,8 @@ URxvt*iso14755: false
 URxvt*iso14755_52: false
 URxvt*keysym.Shift-Control-V: eval:paste_clipboard
 URxvt*keysym.Shift-Control-C: eval:selection_to_clipboard
+
+! Increase/Decrease font size Ctrl+'+'/'-'
+URxvt.keysym.Control-0xffab: perl:font-size:increase
+URxvt.keysym.Control-0xffad: perl:font-size:decrease
+
