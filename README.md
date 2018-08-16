@@ -29,8 +29,8 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 3. create a VM:
     1. At least 2Gb Ram
     2. At least 16Gb Disk
-    3. Video memory 128Mb    
-    4. Two network adatper: 
+    3. Video memory 128Mb
+    4. Two network adatper:
         1. NAT - guest can go online
         2. Host-Only - host only can connect to guest
     5. load the Ubuntu 18.04.01 server iso in the CDROM drive
@@ -45,13 +45,13 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 7. clone the project and run the main install script:
     ```
     git clone --depth=1 https://github.com/meuter/devbox ~/.devbox/
-    cd ~/.devbox/install/ 
+    cd ~/.devbox/install/
     ./install_dev_box.sh
     ```
 
    The script will prompt you to enter your password and then proceed with the installation and configuration
    of all the necessary packages. When finished, the VM will reboot automatically at the end.
-   
+
 8. Start coding 🤓
 9. [optional] if you want to autologin on boot, run the following script:
     ```
@@ -67,7 +67,7 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 | ------------ | ----- |
 | f11 | full screen focussed window |
 | ctrl+f11 | toggle status bar visibility |
-| alt+\<arrow\> | move focus | 
+| alt+\<arrow\> | move focus |
 | alt+shift+\<arrow\> | move window |
 | alt+\<num\> | select worspace |
 | control+shift+\<arrow\> | select next/prev workspace |
@@ -77,6 +77,7 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 | alt+pause r  | reboot |
 | alt+pause e  | logout |
 | alt+enter    | open terminal |
+| alt+shift+enter | open terminal in same working directory |
 | ctrl+shift+g | open chrome |
 | ctrl+shift+o | open vscode |
 | ctrl+shift+t | open thunar |
@@ -85,7 +86,7 @@ Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA)
 
 ## Network:
 
-From the guest machine only, you can ssh into the box. 
+From the guest machine only, you can ssh into the box.
 
 ```
 ssh <user>@<ip>
@@ -103,17 +104,17 @@ Use your user name and password.
 
 Git is configured with the following git aliase:
 
-| Git Alias | Meaning | Command | Console Alias<sup>(1)</sup> | 
+| Git Alias | Meaning | Command | Console Alias<sup>(1)</sup> |
 | --------- | ------- | ------- | ------------- |
 | diff  | diff against HEAD | diff --no-pager | d |
 | wtf   | short status | status -s | w |
-| recent | recent change current branch | log -5 --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %C(white)%<(70,trunc)%s%Creset (%cn)' | r | 
-| in | incoming commits<sup>(2)</sup> | !git remote update -p; git log --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %Cred%<(70,trunc)%s%Creset (%cn)' ..@{u} | i | 
-| out | outgoing commits<sup>(2)</sup> | log --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %Cred%<(70,trunc)%s%Creset (%cn)' @{u}.. | o | 
+| recent | recent change current branch | log -5 --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %C(white)%<(70,trunc)%s%Creset (%cn)' | r |
+| in | incoming commits<sup>(2)</sup> | !git remote update -p; git log --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %Cred%<(70,trunc)%s%Creset (%cn)' ..@{u} | i |
+| out | outgoing commits<sup>(2)</sup> | log --color --pretty=tformat:'%C(yellow)%h%Creset [%><(18)%cr] %Cred%<(70,trunc)%s%Creset (%cn)' @{u}.. | o |
 | lol   | pretty log current branch | log --decorate --pretty=oneline --abbrev-commit --color | l |
-| lolg  | pretty log all branches | log --graph --decorate --pretty=oneline --abbrev-commit --all --color | 
-| update | update workspace | !git stash; git pull --rebase; git stash pop | 
-| wipe | go back to HEAD | !git reset --hard HEAD; git clean -fd | 
+| lolg  | pretty log all branches | log --graph --decorate --pretty=oneline --abbrev-commit --all --color |
+| update | update workspace | !git stash; git pull --rebase; git stash pop |
+| wipe | go back to HEAD | !git reset --hard HEAD; git clean -fd |
 | progress | add currently tracked changes to last commit | commit -a --amend --reuse-message HEAD" |
 | meld | compare using meld | difftool -d<sup>(3)</sup>
 | revin | review incoming changes without merging them | "!git remote update -p; git difftool -d @{u}" |

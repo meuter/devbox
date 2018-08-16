@@ -12,7 +12,7 @@
     "gitlens.hovers.enabled": false,
     "git.enableSmartCommit": true,
     "git.autofetch": true,
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "telemetry.enableCrashReporter": false,
     "editor.minimap.enabled": false,
     "breadcrumbs.enabled": false,
