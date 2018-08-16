@@ -126,6 +126,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://github.com/vim-syntastic/syntastic.git'
     Plug 'https://github.com/Chiel92/vim-autoformat.git'
     Plug 'https://github.com/ericcurtin/CurtineIncSw.vim'
+    Plug 'https://github.com/xolox/vim-misc'
+    Plug 'https://github.com/xolox/vim-easytags.git'
+    Plug 'https://github.com/majutsushi/tagbar.git'
 call plug#end()
 
 
@@ -184,6 +187,12 @@ let mapleader = ","
 
 " ',b' toggle NERDTree
 map <leader>b :NERDTreeToggle<cr>
+
+" ',j' toogle tag bar
+map <leader>j :TagbarOpenAutoClose<cr>
+let g:tagbar_autofocus = 1
+let g:tagbar_left = 1
+let g:easytags_async = 1
 
 " ',st' create a terminal win
 map <leader>ts :split \| terminal<cr>
@@ -292,9 +301,10 @@ set pumheight=10
 highlight Pmenu ctermbg=white
 
 " Goto definition with F12
-nnoremap <F12> :YcmCompleter GoTo<CR>
-inoremap <F12> <Esc>:YcmCompleter GoTo<CR>
-vnoremap <F12> <Esc>:YcmCompleter Goto<CR>
+" nnoremap <silent> <F12> :YcmCompleter GoTo<CR>
+" inoremap <silent> <F12> <Esc>:YcmCompleter GoTo<CR>
+" vnoremap <silent> <F12> <Esc>:YcmCompleter Goto<CR>
+map <silent> <F12> <C-]>
 
 " Configure Syntastic
 let g:syntastic_always_populate_loc_list = 1
