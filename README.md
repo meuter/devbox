@@ -18,7 +18,7 @@ I do mostly C/C++, python, and the occasional javascript and go. Here is a small
 | Shell            | [oh-my-zsh](https://ohmyz.sh/) with [bullet-train](https://github.com/caiogondim/bullet-train.zsh) | theming, improved tab completion over bash |
 | Display Manager  | [slim](https://wiki.archlinux.org/index.php/SLiM) with some [custom themes](https://github.com/adi1090x/slim_themes) | tiny footprint, easy to configure |
 | File Manager     | [Thunar](https://wiki.archlinux.org/index.php/thunar) | user friendly, familiar |
-| Extra            | custom configs, autologin, samba share | familiar |
+| Extra            | custom configs, autologin, samba share, fzf | familiar |
 
 Thanks to [Luke Smith](https://www.youtube.com/channel/UC2eYFnH61tmytImy1mTYvhA) and [Code Path](https://www.youtube.com/channel/UCcQsDUZiK1GWDcP7BpVO_kw) for inspiring this!
 
@@ -122,6 +122,21 @@ Git is configured with the following git aliase:
 - __(1)__ you can type this in the terminal instead of "git \<alias\>"
 - __(2)__ needs the current branch to track some remote branch
 - __(3)__ meld is configured as the default git difftool.
+
+## Screenshots
+
+### Login Screen
+![login.jpg](/screenshots/login.jpg?raw=true)
+
+### Empty Desktop
+![desktop.jpg](/screenshots/desktop.jpg?raw=true)
+
+### Terminal & NeoVIM
+![terminal.jpg](/screenshots/terminal.jpg?raw=true)
+
+### Visual Studio Code & Google Chrome
+![code.jpg](/screenshots/code.jpg?raw=true)
+
 
 
 
