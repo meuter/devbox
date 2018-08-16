@@ -188,8 +188,8 @@ let mapleader = ","
 " ',b' toggle NERDTree
 map <leader>b :NERDTreeToggle<cr>
 
-" ',j' toogle tag bar
-map <leader>j :TagbarOpenAutoClose<cr>
+" ',n' to navigate using tagbar
+map <leader>n :TagbarOpenAutoClose<cr>
 let g:tagbar_autofocus = 1
 let g:tagbar_left = 1
 let g:easytags_async = 1
@@ -300,11 +300,10 @@ inoremap <expr> <cr> ConfirmCompletion()
 set pumheight=10
 highlight Pmenu ctermbg=white
 
-" Goto definition with F12
-" nnoremap <silent> <F12> :YcmCompleter GoTo<CR>
-" inoremap <silent> <F12> <Esc>:YcmCompleter GoTo<CR>
-" vnoremap <silent> <F12> <Esc>:YcmCompleter Goto<CR>
-map <silent> <F12> <C-]>
+" Goto definition with <leader>j
+nnoremap <silent> <leader>j :YcmCompleter GoTo<CR>
+inoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
+vnoremap <silent> <leader>j <Esc>:YcmCompleter Goto<CR>
 
 " Configure Syntastic
 let g:syntastic_always_populate_loc_list = 1
