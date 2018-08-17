@@ -31,6 +31,9 @@ git config --global alias.wipe "!git reset --hard HEAD; git clean -fd"
 # progress = amend commit with latest changes (only tracked files)
 git config --global alias.progress "commit -a --amend --reuse-message HEAD"
 
+# undo = undo latest commit
+git config --global alias.undo "reset HEAD^1"
+
 # configure meld for diff and difftool
 git config --global diff.tool meld
 git config --global diff.guitool meld
