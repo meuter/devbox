@@ -70,6 +70,9 @@ nnoremap <C-j> 15j
 vnoremap <C-k> 15k
 vnoremap <C-j> 15j
 
+" indent/dedent with tab/s-tab
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text selection
@@ -120,24 +123,6 @@ xnoremap <C-Right> <Esc>e
 xnoremap <C-left> <Esc>b
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Handling trailing whitespace
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" ',tr' to trim whitespace
-nmap <leader>tr g_ld$
-
-" ',tra' to trim whitespace in all file
-nmap <leader>tra :%norm! g_ld$<cr>
-
-" Highlight itrailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configure embedded terminal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -255,7 +240,8 @@ nmap <c-w>6 <Plug>AirlineSelectTab6
 nmap <c-w>7 <Plug>AirlineSelectTab7
 nmap <c-w>8 <Plug>AirlineSelectTab8
 nmap <c-w>9 <Plug>AirlineSelectTab9
-nmap <c-x> <Plug>AirlineSelectNextTab
+nmap <c-tab> <Plug>AirlineSelectNextTab
+nmap <c-s-tab> <Plug>AirlineSelectPrevTab
 map <c-t> :tabnew<cr>
 
 " Select theme for both status and tab bar
@@ -478,13 +464,34 @@ let g:syntastic_check_on_wq = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
+call SetColorScheme() " should happen after plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Setting the color scheme *must* happen after plug#end
-call SetColorScheme()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Handling trailing whitespace
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" ',tr' to trim whitespace
+nmap <leader>tr g_ld$
+
+" ',tra' to trim whitespace in all file
+nmap <leader>tra :%norm! g_ld$<cr>
+
+" Highlight itrailing whitespace
+syntax on
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Build using make
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 map <F17> :make test -s \| copen <cr><cr>G
 map <F7> :make -s \| copen <cr><cr>G
