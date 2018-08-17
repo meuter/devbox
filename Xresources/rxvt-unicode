@@ -43,14 +43,13 @@ URxvt*keysym.Control-Shift-Left:    \033[1;6D
 URxvt*keysym.Control-Shift-Home:    \033[1;6H
 URxvt*keysym.Control-Shift-End:     \033[1;6F
 URxvt*keysym.Control-BackSpace:     \027
+URxvt*keysym.Control-Shift-ISO_Left_Tab:  \033[27;6;9~
+URxvt*keysym.Control-Tab:                 \033[27;5;9~
+
 
 ! copy/paste
 URxvt*keysym.Shift-Control-V: eval:paste_clipboard
 URxvt*keysym.Shift-Control-C: eval:selection_to_clipboard
-
-!URxvt*keysym.C-Tab:       \033[34~
-URxvt*keysym.Control-Shift-ISO_Left_Tab:  \033[27;6;9~
-URxvt*keysym.Control-Tab:                 \033[27;5;9~
 
 ! Increase/Decrease font size Ctrl+'+'/'-'
 URxvt.keysym.Control-0xffab: perl:font-size:increase

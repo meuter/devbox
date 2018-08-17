@@ -38,10 +38,6 @@ set expandtab smarttab shiftwidth=4 tabstop=4
 filetype plugin indent on
 autocmd FileType make setlocal noexpandtab
 
-" When switching back to Normal mode from Insert mode
-" prevent the cursor from moving to the left, grrr
-inoremap <Esc> <Esc><Right>
-
 " Split goes to the bottom and vsplit to the right
 set splitbelow splitright
 
@@ -51,12 +47,19 @@ set noshowmode laststatus=2
 " Automatically reload vimrc, and refresh airline if installed
 autocmd! BufWritePost init.vim,.vimrc source % | if exists(':AirlineRefresh') | execute 'AirlineRefresh' | endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc key bindings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" When switching back to Normal mode from Insert mode
+" prevent the cursor from moving to the left, grrr
+inoremap <Esc> <Esc><Right>
+
 " Remap leader key
 let mapleader = ","
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Misc key shortcuti
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" disable highlighted search with esc in normal mode
+nmap <esc> :nohl<cr>
 
 " ',s' to create a split
 map <leader>s :split<cr>
@@ -64,15 +67,33 @@ map <leader>s :split<cr>
 " ',v' to create a vsplit
 map <leader>v :vsplit<cr>
 
+" ',d' to delete but not modify register
+map <leader>d "_d
+
 " Use ctrl+kj to just 5 lines at a time
-nnoremap <C-k> 15k
-nnoremap <C-j> 15j
-vnoremap <C-k> 15k
-vnoremap <C-j> 15j
+nnoremap <C-K> 10k
+nnoremap <C-j> 10j
+vnoremap <C-k> 10k
+vnoremap <C-j> 10j
 
 " indent/dedent with tab/s-tab
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
+
+" ctrl+c copy to system clipboard
+vnoremap <c-c> y
+
+" ctrl+v to paste from system clipboard
+nnoremap <c-v> Pl
+inoremap <c-v> <esc>lPa
+
+" ctrl+x to cut to system clipboard
+vnoremap <c-x> d
+
+" ctrl+s to save
+nmap <c-s> :w<CR>
+vmap <c-s> <Esc>:w<cr>gv
+imap <c-s> <Esc>:w<CR>i
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text selection
@@ -242,7 +263,8 @@ nmap <c-w>8 <Plug>AirlineSelectTab8
 nmap <c-w>9 <Plug>AirlineSelectTab9
 nmap <c-tab> <Plug>AirlineSelectNextTab
 nmap <c-s-tab> <Plug>AirlineSelectPrevTab
-map <c-t> :tabnew<cr>
+map <silent><c-t> :tabnew<cr>
+map <silent><leader>w :bd!<cr>
 
 " Select theme for both status and tab bar
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
@@ -269,6 +291,10 @@ autocmd FileType c setlocal commentstring=\/\/\ %s
 
 Plug 'https://github.com/scrooloose/nerdtree.git', { 'on': 'NERDTreeToggle' }
 Plug 'https://github.com/ryanoasis/vim-devicons.git', { 'on': 'NERDTreeToggle' }
+Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git', { 'on': 'NERDTreeToggle' }
+
+" Focus on most used filetype for efficiency
+let g:NERDTreeLimitedSyntax = 1
 
 " Toggle file explorer using ',b'
 map <leader>b :NERDTreeToggle<cr>
@@ -440,11 +466,6 @@ Plug 'https://github.com/troydm/zoomwintab.vim.git'
 
 " Multiple cursors (ctrl+n / ctrl+p then c to change)
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
-
-" Kill buffer but leave split
-Plug 'https://github.com/qpkorr/vim-bufkill.git'
-nnoremap <silent> <C-c> :BD!<cr>
-inoremap <silent> <C-c> <Esc>:BD!<cr>
 
 " Autoformat code with ',f'
 Plug 'https://github.com/Chiel92/vim-autoformat.git'
