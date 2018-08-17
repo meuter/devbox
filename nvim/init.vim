@@ -11,6 +11,9 @@ set number relativenumber signcolumn=yes
 " Reload files when changed behind vim's back
 set autoread
 
+" Highlight of the current line
+set cursorline
+
 " Disable swap files and such nonsense
 set nobackup nowb noswapfile
 
@@ -99,8 +102,59 @@ xnoremap <Down> <Esc><Down>
 xnoremap <C-Right> <Esc>e
 xnoremap <C-left> <Esc>b
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Handling trailing whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
+
+" ',tr' to trim whitespace
+nmap <leader>tr g_ld$
+
+" ',tra' to trim whitespace in all file
+nmap <leader>tra :%norm! g_ld$<cr>
+
+" Highlight itrailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configure embedded terminal
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Open a terminal in current buffer using ',t'
+map <leader>t :terminal<cr>
+
+" Open a terminal in a (horizontal) with ',ts'
+map <leader>ts :split \| terminal<cr>
+
+" Open a terminal in a vertical split with ',tv'
+map <leader>tv :vsplit \| terminal<cr>
+
+" Automatically open terminal in insert mode
+autocmd BufWinEnter,WinEnter term://* startinsert
+
+if has('nvim')
+    " terminal closes automatically when exit
+    autocmd TermClose term://* :q!
+
+    " disable line number in terminal mode
+    autocmd TermOpen term://* startinsert | setlocal nonumber norelativenumber signcolumn=no
+endif
+
+" Escp to get out of insert mode like in any other buffer
+tnoremap <Esc> <C-\><C-n>
+
+" Automatically escapes when switching to another buffer
+tnoremap <C-w><Up> <C-\><C-n><C-w><Up>
+tnoremap <C-w><Down> <C-\><C-n><C-w><Down>
+tnoremap <C-w><Left> <C-\><C-n><C-w><Left>
+tnoremap <C-w><Right> <C-\><C-n><C-w><Right>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Manager
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Some local variables
@@ -114,7 +168,14 @@ if empty(glob(s:plugpath))
     autocmd VimEnter * PlugInstall
 endif
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
@@ -191,6 +252,9 @@ Plug 'https://github.com/tpope/vim-commentary.git'
 map <leader>c gcc
 
 " Disable auto comment insertion on newline
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Use // instead of /* */ when commenting out c code
 autocmd FileType c setlocal commentstring=\/\/\ %s
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,155 +281,81 @@ map <Leader>gb :Gblame<cr>
 Plug 'https://github.com/airblade/vim-gitgutter'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Miscelaneous
+" Fuzzy file search
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Dim inactive windows
-Plug 'https://github.com/blueyed/vim-diminactive.git'
-
-" Remember cursor position when editing a file
-Plug 'https://github.com/farmergreg/vim-lastplace'
-
-" Move lines around using alt+j/k
-Plug 'https://github.com/matze/vim-move.git'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Unsorted
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nnoremap <silent> <C-c> :BD!<cr>
-inoremap <silent> <C-c> <Esc>:BD!<cr>
-
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer
-  endif
-endfunction
-
-
-
-
-
-
-
-    " Fuzzy file search
-    Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-
-    " Window managment
-    Plug 'https://github.com/qpkorr/vim-bufkill.git'
-    Plug 'https://github.com/troydm/zoomwintab.vim.git'
-
-     " Global search
-    Plug 'https://github.com/mileszs/ack.vim.git'
-    Plug 'https://github.com/Valloric/ListToggle.git'
-    Plug 'https://github.com/itchyny/vim-qfedit.git'
-
-    " Multiple cursors
-    Plug 'https://github.com/terryma/vim-multiple-cursors.git'
-
-    " Language Support
-    " Plug 'https://github.com/sheerun/vim-polyglot.git'
-    " Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-    " Plug 'https://github.com/vim-syntastic/syntastic.git'
-    " Plug 'https://github.com/Chiel92/vim-autoformat.git'
-    " Plug 'https://github.com/ericcurtin/CurtineIncSw.vim'
-    " Plug 'https://github.com/xolox/vim-misc'
-    " Plug 'https://github.com/xolox/vim-easytags.git'
-    " Plug 'https://github.com/majutsushi/tagbar.git'
-
-call plug#end()
-
-call SetColorScheme()
-
-" Use the silver searcher for grep
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
+Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 
 " Ctrl+p for fuzzy search ('r' means start at the .git)
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 
-" ',n' to navigate using tagbar
-map <silent> <leader>n :TagbarOpenAutoClose<cr>
-let g:tagbar_autofocus = 1
-let g:tagbar_left = 1
-let g:easytags_async = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Global search and replace
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ',st' create a terminal win
-map <leader>ts :split \| terminal<cr>
-
-" ',vt' to create a terminal windows on the right
-map <leader>tv :vsplit \| terminal<cr>
-
-" ',vt' to create a terminal windows on the right
-map <leader>t :terminal<cr>
-
-" ',s' to create a split
-map <leader>s :split<cr>
-
-
-" ',v' to create a vsplit
-map <leader>v :vsplit<cr>
-
-" ',f' to autformat code
-map <leader>f :Autoformat<cr>
-
-" ',tr' to trim whitespace
-map <leader>tr g_ld$
-
-" ',tra' to trim whitespace in all file
-map <leader>tra :%norm! g_ld$<cr>
-
-" ',o' switch between .h and .c/cpp
-map <leader>o :call CurtineIncSw()<cr>
-
-" turn on highlight of the current line
-set cursorline
-
-" terminal starts in insert mode
-autocmd BufWinEnter,WinEnter term://* startinsert
-
-if has('nvim')
-    " terminal closes automatically when exit
-    autocmd TermClose term://* :q!
-
-    " disable line number in terminal mode
-    autocmd TermOpen term://* startinsert | setlocal nonumber norelativenumber signcolumn=no
+" faster async vimgrep
+Plug 'https://github.com/mileszs/ack.vim.git'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
 endif
 
-" esc configure to switch to normal mode (for copy paste, etc...)
-tnoremap <Esc> <C-\><C-n>
+" Toggle quickfix (search result) with ',q' and
+" loclist (compilation errors, etc) with ',l'
+Plug 'https://github.com/Valloric/ListToggle.git'
 
-" auto escape to terminal mode when switching to another split
-tnoremap <C-w><Up> <C-\><C-n><C-w><Up>
-tnoremap <C-w><Down> <C-\><C-n><C-w><Down>
-tnoremap <C-w><Left> <C-\><C-n><C-w><Left>
-tnoremap <C-w><Right> <C-\><C-n><C-w><Right>
+" Make the quickfix editable, e.g. before global replace
+Plug 'https://github.com/itchyny/vim-qfedit.git'
 
-" Use ctrl+kj to just 5 lines at a time
-nnoremap <C-k> 15k
-nnoremap <C-j> 15j
-vnoremap <C-k> 15k
-vnoremap <C-j> 15j
+function! GlobalSearch()
+    let l:search_query = input('Search: ')
+    if !empty(l:search_query)
+        exec ':Ack ' . '"' . l:search_query . '"'
+    endif
+    return l:search_query
+endfunction
 
-" Highlight unwanted spaces
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+function! GlobalReplace()
+    let l:search_query = GlobalSearch()
+    if !empty(l:search_query)
+        let l:replace_by = input('Replace by: ')
+        if !empty(l:replace_by)
+            try
+                exec ':cfdo %s/' . l:search_query . '/' . l:replace_by . '/gc | update'
+            finally
+                execute ':QToggle'
+            endtry
+        endif
+    endif
+endfunction
 
+" Search throughout cwd using C-S-F
+inoremap <C-S-F> <Esc>:call GlobalSearch()<cr>
+nnoremap <C-S-F> :call GlobalSearch()<cr>
 
-" configure YouCompleteMe
-set completeopt=menuone,preview,noinsert
+" Search and replace interactive using C-S-H
+inoremap <C-S-H> <Esc>:call GlobalReplace()<cr>
+nnoremap <C-S-H> :call GlobalReplace()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Code Completion + GoTo file/definition
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Installs/Updates YCM
+function! BuildYCM(info)
+    " info is a dictionary with 3 fields
+    " - name:   name of the plugin
+    " - status: 'installed', 'updated', or 'unchanged'
+    " - force:  set on PlugInstall! or PlugUpdate!
+    if a:info.status == 'installed' || a:info.force
+        !./install.py --clang-completer
+    endif
+endfunction
+
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+" Configure YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.devbox/nvim/.ycm_extra_conf.py'
 let g:ycm_auto_trigger = 1
 let g:ycm_enable_diagnostic_signs = 1
@@ -378,8 +368,8 @@ let g:ycm_semantic_triggers = {
 	\   'c': [ 're!\w{2}' ]
 	\ }
 
-
-" enter to confirm completion
+" <Enter> to confirm completion
+set completeopt=menuone,preview,noinsert
 function! ConfirmCompletion()
     if pumvisible()
         if !empty(v:completed_item)
@@ -393,48 +383,94 @@ function! ConfirmCompletion()
 endf
 inoremap <expr> <cr> ConfirmCompletion()
 
-" configure completion pop
+" Configure completion pop
 set pumheight=10
 highlight Pmenu ctermbg=white
 
-" Goto definition with <leader>j
+" Goto definition with <leader>j (more precise that jump to tag)
 nnoremap <silent> <leader>j :YcmCompleter GoTo<CR>
 inoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
 vnoremap <silent> <leader>j <Esc>:YcmCompleter Goto<CR>
 
-" Configure Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Code navigation
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Update ctags automagically
+Plug 'https://github.com/xolox/vim-misc'
+Plug 'https://github.com/xolox/vim-easytags.git'
+
+" Navigation bar on the side (open with ',n'
+Plug 'https://github.com/majutsushi/tagbar.git'
+map <silent> <leader>n :TagbarOpenAutoClose<cr>
+let g:tagbar_autofocus = 1
+let g:tagbar_left = 1
+let g:easytags_async = 1
+
+" Switch from .h to .c and vice versa using ',o'
+Plug 'https://github.com/ericcurtin/CurtineIncSw.vim'
+map <leader>o :call CurtineIncSw()<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Miscelaneous
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Dim inactive windows
+Plug 'https://github.com/blueyed/vim-diminactive.git'
+
+" Remember cursor position when editing a file
+Plug 'https://github.com/farmergreg/vim-lastplace'
+
+" Move lines around using alt+j/k
+Plug 'https://github.com/matze/vim-move.git'
+
+" Zoom on current buffer using <c-w> <c-o>
+Plug 'https://github.com/troydm/zoomwintab.vim.git'
+
+" Multiple cursors (ctrl+n / ctrl+p then c to change)
+Plug 'https://github.com/terryma/vim-multiple-cursors.git'
+
+" Kill buffer but leave split
+Plug 'https://github.com/qpkorr/vim-bufkill.git'
+nnoremap <silent> <C-c> :BD!<cr>
+inoremap <silent> <C-c> <Esc>:BD!<cr>
+
+" Autoformat code with ',f'
+Plug 'https://github.com/Chiel92/vim-autoformat.git'
+map <leader>f :Autoformat<cr>
+
+" Language pack
+Plug 'https://github.com/sheerun/vim-polyglot.git'
+
+" Syntax checker
+Plug 'https://github.com/vim-syntastic/syntastic.git'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#end()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" confirugre global search using Ack
-function! GlobalSearch()
-    let g:global_search_query = input('Search: ')
-    exec ':Ack ' . '"' . g:global_search_query . '"'
-endfunction
+" Setting the color scheme *must* happen after plug#end
+call SetColorScheme()
 
-inoremap <C-S-F> :call GlobalSearch()<cr>
-nnoremap <C-S-F> <Esc>:call GlobalSearch()<cr>
+" ',s' to create a split
+map <leader>s :split<cr>
 
-function! GlobalReplace()
-    if !exists("g:global_search_query")
-        call GlobalSearch()
-    endif
-    let g:global_replace_term = input('Replace by: ')
-    exec ':cfdo %s/' . g:global_search_query . '/' . g:global_replace_term . '/gc | update'
-    unlet g:global_search_query
-    unlet g:global_replace_term
-    exec ':QToggle'
-endfunction
+" ',v' to create a vsplit
+map <leader>v :vsplit<cr>
 
-inoremap <C-S-H> :call GlobalReplace()<cr>
-nnoremap <C-S-H> <Esc>:call GlobalReplace()<cr>
-
-" disable auto comment insertion
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
+" Use ctrl+kj to just 5 lines at a time
+nnoremap <C-k> 15k
+nnoremap <C-j> 15j
+vnoremap <C-k> 15k
+vnoremap <C-j> 15j
 
 map <c-t> :tabnew<cr>
 
