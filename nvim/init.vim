@@ -155,7 +155,7 @@ autocmd BufWinEnter,WinEnter term://* startinsert
 
 if has('nvim')
     " terminal closes automatically when exit
-    autocmd TermClose term://* :q!
+    " autocmd TermClose term://* :q!
 
     " disable line number in terminal mode
     autocmd TermOpen term://* startinsert | setlocal nonumber norelativenumber signcolumn=no
@@ -410,7 +410,12 @@ highlight Pmenu ctermbg=white
 " Goto definition with <leader>j (more precise that jump to tag)
 nnoremap <silent> <leader>j :YcmCompleter GoTo<CR>
 inoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
-vnoremap <silent> <leader>j <Esc>:YcmCompleter Goto<CR>
+vnoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
+
+nnoremap <silent> <leader>x :YcmCompleter FixIt<CR>
+inoremap <silent> <leader>x <Esc>:YcmCompleter FixIt<CR>
+vnoremap <silent> <leader>x <Esc>:YcmCompleter FixIt<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Code navigation
@@ -481,3 +486,5 @@ call plug#end()
 call SetColorScheme()
 
 
+map <F17> :make test -s \| copen <cr><cr>G
+map <F7> :make -s \| copen <cr><cr>G
