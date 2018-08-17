@@ -55,43 +55,49 @@ let mapleader = ","
 " Text selection
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Select using shift + arrow, pageup/dn, home, insert
-" nnoremap <s-right> v<right>
-" xnoremap <s-right> <right>
-" inoremap <s-right> <c-o>v<right>
-" nnoremap <s-left> v<left>
-" xnoremap <s-left> <left>
-" inoremap <s-left> <c-o>v<left>
-nnoremap <s-up> v<up>
-" xnoremap <s-up> <up>
-" inoremap <s-up> <c-o>v<up>
-" nnoremap <s-down> v<down>
-" xnoremap <s-down> <down>
-" inoremap <s-down> <c-o>v<down>
-" nnoremap <c-s-right> ve
-" xnoremap <c-s-right> e
-" inoremap <c-s-right> <c-o>ve
-" nnoremap <c-s-left> vb
-" xnoremap <c-s-left> b
-" inoremap <c-s-left> <c-o>vb
-" nnoremap <s-pageup> v10<up>
-" xnoremap <s-pageup> 10<up>
-" inoremap <s-pageup> <c-o>v10<up>
-" nnoremap <s-pagedown> v10<down>
-" xnoremap <s-pagedown> 10<down>
-" inoremap <s-pagedown> <c-o>v10<down>
-" nmap <s-home> v<home>
-" nmap <s-end> v<end>
-" nnoremap <c-s-home> vgg0
-" nnoremap <c-s-end> vG<end>
+" Select using shift+arrow/home/insert
+nnoremap <S-Right> v<Right>
+xnoremap <S-Right> <Right>
+inoremap <S-Right> <c-o>v<Right>
+nnoremap <S-Left> v<Left>
+xnoremap <S-Left> <Left>
+inoremap <S-Left> <c-o>v<Left>
+nnoremap <S-Up> v<Up>
+xnoremap <S-Up> <Up>
+inoremap <S-Up> <c-o>v<Up>
+nnoremap <S-Down> v<Down>
+xnoremap <S-Down> <Down>
+inoremap <S-Down> <c-o>v<Down>
+nnoremap <S-Home> v<Home>
+inoremap <S-Home> <c-o>v<Home>
+xnoremap <S-Home> <Home>
+nnoremap <S-End> v<End>
+inoremap <S-End> <c-o>v<End>
+xnoremap <S-End> <End>
+
+" Select words using ctrl+shift+arrow/home/insert
+nnoremap <C-S-Right> ve
+xnoremap <C-S-Right> e
+inoremap <C-S-Right> <c-o>ve
+nnoremap <C-S-Left> vb
+xnoremap <C-S-Left> b
+inoremap <C-S-Left> <c-o>vb
+
+" Select line using ctrl+shift+arrow/home/insert
+nnoremap <C-S-Home> v<Home>
+inoremap <C-S-Home> <c-o>v<Home>
+xnoremap <C-S-Home> <Home>
+nnoremap <C-S-End> v<End>
+inoremap <C-S-End> <c-o>v<End>
+xnoremap <C-S-End> <End>
 
 " Exit VISUAL when shift not held.
-" xnoremap <right> <esc><right>
-" xnoremap <left> <esc><left>
-" xnoremap <up> <esc><up>
-" xnoremap <down> <esc><down>
-" xnoremap <c-right> <esc>e
-" xnoremap <c-left> <esc>b
+xnoremap <Right> <Esc><Right>
+xnoremap <Left> <Esc><Left>
+xnoremap <Up> <Esc><Up>
+xnoremap <Down> <Esc><Down>
+xnoremap <C-Right> <Esc>e
+xnoremap <C-left> <Esc>b
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
@@ -377,9 +383,9 @@ let g:ycm_semantic_triggers = {
 function! ConfirmCompletion()
     if pumvisible()
         if !empty(v:completed_item)
-            return "\<esc>a"
+            return "\<Esc>a"
         else
-            return "\<c-n>\<esc>a"
+            return "\<c-n>\<Esc>a"
         endif
     else
         return "\<cr>"
