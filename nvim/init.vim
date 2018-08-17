@@ -183,7 +183,6 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline_section_error = ''
 let g:airline_section_warning = ''
-let g:airline_section_z = ''
 
 " Configure tab bar
 let g:airline#extensions#tabline#enabled = 1
