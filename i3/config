@@ -22,8 +22,9 @@ bindsym $mod+Shift+Return exec ~/.devbox/i3/i3-terminal-here.sh
 bindsym Control+q kill
 
 # start rofi
-bindsym Control+space exec rofi -show window
-bindsym $mod+space exec rofi -show drun
+# bindsym Control+space exec rofi -show window
+bindsym $mod+space exec  ~/.devbox/i3/i3-switch-workspace.sh
+bindsym Control+space exec rofi -show drun -p Run
 
 # focus
 bindsym $mod+Left focus left
