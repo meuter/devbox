@@ -339,7 +339,7 @@ let g:syntastic_check_on_wq = 0
 " confirugre global search using Ack
 function! GlobalSearch()
     let g:global_search_query = input('Search: ')
-    exec ':Ack ' . g:global_search_query
+    exec ':Ack ' . '"' . g:global_search_query . '"'
 endfunction
 
 inoremap <C-S-F> :call GlobalSearch()<cr>
