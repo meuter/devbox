@@ -55,6 +55,23 @@ autocmd! BufWritePost init.vim,.vimrc source % | if exists(':AirlineRefresh') | 
 let mapleader = ","
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc key shortcuti
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ',s' to create a split
+map <leader>s :split<cr>
+
+" ',v' to create a vsplit
+map <leader>v :vsplit<cr>
+
+" Use ctrl+kj to just 5 lines at a time
+nnoremap <C-k> 15k
+nnoremap <C-j> 15j
+vnoremap <C-k> 15k
+vnoremap <C-j> 15j
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text selection
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -227,6 +244,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+" Navigate tab bar
 nmap <c-w>1 <Plug>AirlineSelectTab1
 nmap <c-w>2 <Plug>AirlineSelectTab2
 nmap <c-w>3 <Plug>AirlineSelectTab3
@@ -237,8 +256,9 @@ nmap <c-w>7 <Plug>AirlineSelectTab7
 nmap <c-w>8 <Plug>AirlineSelectTab8
 nmap <c-w>9 <Plug>AirlineSelectTab9
 nmap <c-x> <Plug>AirlineSelectNextTab
+map <c-t> :tabnew<cr>
 
-" Select theme for airline
+" Select theme for both status and tab bar
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 let g:airline_theme='bubblegum'
 
@@ -459,22 +479,5 @@ call plug#end()
 
 " Setting the color scheme *must* happen after plug#end
 call SetColorScheme()
-
-" ',s' to create a split
-map <leader>s :split<cr>
-
-" ',v' to create a vsplit
-map <leader>v :vsplit<cr>
-
-" Use ctrl+kj to just 5 lines at a time
-nnoremap <C-k> 15k
-nnoremap <C-j> 15j
-vnoremap <C-k> 15k
-vnoremap <C-j> 15j
-
-map <c-t> :tabnew<cr>
-
-
-
 
 
