@@ -55,11 +55,14 @@ autocmd! BufWritePost init.vim,.vimrc source % | if exists(':AirlineRefresh') | 
 " prevent the cursor from moving to the left, grrr
 inoremap <Esc> <Esc><Right>
 
+" allow to go directly from visual mode to insert mode
+xnoremap i <Esc>i
+
 " Remap leader key
 let mapleader = ","
 
 " disable highlighted search with esc in normal mode
-nnoremap <esc> :nohl<cr>
+nnoremap <silent><esc> :nohl<cr>
 
 " ',s' to create a split
 map <leader>s :split<cr>
@@ -115,9 +118,9 @@ inoremap <S-Down> <c-o>v<Down>
 nnoremap <S-Home> v<Home>
 inoremap <S-Home> <c-o>v<Home>
 xnoremap <S-Home> <Home>
-nnoremap <S-End> v<End>
-inoremap <S-End> <c-o>v<End>
-xnoremap <S-End> <End>
+nnoremap <S-End> v<End>h
+inoremap <S-End> <c-o>v<End>h
+xnoremap <S-End> <End>h
 
 " Select words using ctrl+shift+arrow/home/insert
 nnoremap <C-S-Right> ve
@@ -349,6 +352,7 @@ function! GlobalSearch()
 endfunction
 
 function! GlobalReplace()
+    let l:save = winsaveview()
     let l:search_query = GlobalSearch()
     if !empty(l:search_query)
         let l:replace_by = input('Replace by: ')
@@ -357,6 +361,7 @@ function! GlobalReplace()
                 exec ':cfdo %s/' . l:search_query . '/' . l:replace_by . '/gc | update'
             finally
                 execute ':QToggle'
+                call winrestview(l:save)
             endtry
         endif
     endif
@@ -371,7 +376,7 @@ inoremap <C-S-H> <Esc>:call GlobalReplace()<cr>
 nnoremap <C-S-H> :call GlobalReplace()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Code Completion + GoTo file/definition
+" Code Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Installs/Updates YCM
@@ -419,7 +424,7 @@ inoremap <expr> <cr> ConfirmCompletion()
 set pumheight=10
 highlight Pmenu ctermbg=white
 
-" Goto definition with <leader>j (more precise that jump to tag)
+" Goto declaration + jump to file with <leader>j
 nnoremap <silent> <leader>j :YcmCompleter GoTo<CR>
 inoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
 vnoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
@@ -427,7 +432,6 @@ vnoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
 nnoremap <silent> <leader>x :YcmCompleter FixIt<CR>
 inoremap <silent> <leader>x <Esc>:YcmCompleter FixIt<CR>
 vnoremap <silent> <leader>x <Esc>:YcmCompleter FixIt<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Code navigation
@@ -447,6 +451,9 @@ let g:easytags_async = 1
 " Switch from .h to .c and vice versa using ',o'
 Plug 'https://github.com/ericcurtin/CurtineIncSw.vim'
 map <leader>o :call CurtineIncSw()<cr>
+
+" Goto tag (+/- goto declaration)
+map <silent> <leader>k <c-]>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Miscelaneous
@@ -494,11 +501,24 @@ call SetColorScheme() " should happen after plug#end()
 " Handling trailing whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function! TrimWhitespaceCurrentLine()
+    let l:save = winsaveview()
+    s/\s\+$//eg
+    call winrestview(l:save)
+endfunction
+
+function! TrimWhitespaceCurrentFile()
+    let l:save = winsaveview()
+    %s/\s\+$//eg
+    call winrestview(l:save)
+endfunction
+
 " ',tr' to trim whitespace
-nmap <leader>tr g_ld$
+
+nmap <silent> <leader>tr :call TrimWhitespaceCurrentLine()<cr>
 
 " ',tra' to trim whitespace in all file
-nmap <leader>tra :%norm! g_ld$<cr>
+nmap <silent> <leader>tra :call TrimWhitespaceCurrentFile()<cr>
 
 " Highlight itrailing whitespace
 syntax on
