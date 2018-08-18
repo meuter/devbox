@@ -35,7 +35,7 @@ git config --global alias.progress "commit -a --amend --reuse-message HEAD"
 git config --global alias.undo "reset HEAD^1"
 
 # co = checkout 
-git config --global alias.co "commit"
+git config --global alias.co "checkout"
 
 # configure meld for diff and difftool
 git config --global diff.tool meld
