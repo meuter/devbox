@@ -34,6 +34,9 @@ git config --global alias.progress "commit -a --amend --reuse-message HEAD"
 # undo = undo latest commit
 git config --global alias.undo "reset HEAD^1"
 
+# co = checkout 
+git config --global alias.co "commit"
+
 # configure meld for diff and difftool
 git config --global diff.tool meld
 git config --global diff.guitool meld
