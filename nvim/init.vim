@@ -59,7 +59,7 @@ inoremap <Esc> <Esc><Right>
 let mapleader = ","
 
 " disable highlighted search with esc in normal mode
-nmap <esc> :nohl<cr>
+nnoremap <esc> :nohl<cr>
 
 " ',s' to create a split
 map <leader>s :split<cr>
