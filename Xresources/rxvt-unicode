@@ -15,6 +15,7 @@ URxvt.font:                 xft:NotoMono Nerd Font Mono:style=book:size=11
 URxvt.boldFont:             xft:NotoMono Nerd Font Mono:style=bold:size=11
 URxvt.italicFont:           xft:NotoMono Nerd Font Mono:style=italic:size=11
 URxvt.boldItalicFont:       xft:NotoMono Nerd Font Mono:style=bolditalic:size=11
+URxvt.letterSpace:	    -1
 
 ! Improved font rendering
 Xft.autohint:               0
