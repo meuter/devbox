@@ -488,6 +488,19 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Build using make
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Allow to call :Make to spawn the build in a background terminal (tmux, iterm, etc).
+Plug 'https://github.com/tpope/vim-dispatch'
+
+" Allow to use the neovim built-in terminal on top of dispatch.
+Plug 'https://github.com/radenling/vim-dispatch-neovim.git'
+
+map <F17> :make test -s \| copen <cr><cr>G
+map <F7> :make -s \| copen <cr><cr>G
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -530,9 +543,4 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Build using make
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map <F17> :make test -s \| copen <cr><cr>G
-map <F7> :make -s \| copen <cr><cr>G
