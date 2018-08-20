@@ -88,3 +88,14 @@ stty -ixon ixoff
 setxkbmap -option caps:escape
 
 
+# using ctrl+z to switch back background app to foreground
+# when the current line is empty.
+function fg-bg() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+  else
+    zle push-input
+  fi
+}
+zle -N fg-bg
+bindkey '^Z' fg-bg
