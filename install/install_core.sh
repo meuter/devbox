@@ -3,7 +3,7 @@
 source ./colors.sh
 
 info "Installing core packages..."
-sudo apt install -y build-essential neofetch python python-pip curl\
+sudo apt install -y build-essential cmake neofetch python python-pip curl\
 	            dkms linux-headers-generic linux-headers-$(uname -r)
 
 info "Removing some bloatware..."

@@ -7,8 +7,12 @@ export ZSH="/home/cme/.config/oh-my-zsh"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="bullet-train"
+
+
+case $(tty) in
+    (/dev/tty[1-9]) ZSH_THEME="gentoo";;
+                (*) ZSH_THEME="bullet-train";;
+esac
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -21,7 +25,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 export BULLETTRAIN_PROMPT_ORDER=(time virtualenv status custom dir git cmd_exec_time)
-export BULLETTRAIN_PROMPT_CHAR=✭
+export BULLETTRAIN_PROMPT_CHAR=
+
 
 # User configuration
 
@@ -69,17 +74,7 @@ logcat() { python ~/.devbox/utils/colored-logcat.py $@ }
 # one history per shell
 unsetopt share_history
 
-# ctrl+h to go home
-function gohome {
-    echo
-    cd ~
-    zle reset-prompt
-}
-zle -N gohome
-bindkey '^H' gohome
-
-bindkey -s '^V' 'vim $(fzf)^M'
-
+bindkey '^H' backward-kill-word
 
 # ctrl+p natigate directories with fzf
 export FZF_DEFAULT_OPTS='--height 15% --reverse'
@@ -91,4 +86,5 @@ stty -ixon ixoff
 
 # make caps lock act as esc
 setxkbmap -option caps:escape
+
 

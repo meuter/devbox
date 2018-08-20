@@ -13,9 +13,11 @@ source ./authenticate.sh
 ./install_desktop.sh
 ./install_slim.sh
 ./install_neovim.sh
-#./install_vscode.sh
-#./install_google_chrome.sh
+./install_vscode.sh
+./install_google_chrome.sh
+./install_thunar.sh
 ./config_git.sh
+./config_gtk.sh
 
 if [ ! "$1" == "noreboot" ]; then
     reboot

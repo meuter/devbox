@@ -13,5 +13,10 @@
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "window.zoomLevel": 1,
-    "telemetry.enableCrashReporter": false
+    "telemetry.enableCrashReporter": false,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "window.menuBarVisibility": "hidden",
+    "terminal.integrated.rendererType": "dom",
+    "cmake.configureOnOpen": true
 }

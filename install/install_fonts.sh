@@ -12,6 +12,13 @@ wget https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Noto/Mono
 fc-cache -fv .
 popd
 
+info "Installing infinality font fonfig..."
+wget https://launchpad.net/~no1wantdthisname/+archive/ubuntu/ppa/+files/fontconfig-infinality_20130104-0ubuntu0ppa1_all.deb
+sudo dpkg -i fontconfig-infinality_20130104-0ubuntu0ppa1_all.deb
+# need to patch infinality conf to remove subpixel rendering rgb, messes up with urxvt poweline symbols.
+for file in /etc/fonts/infinality/conf.src/50*; do sudo sed -i -e "/rgba/,+2d" $file; done
+rm -rf fontconfig-infinality_20130104-0ubuntu0ppa1_all.deb
+
 success "Done!"
 
 
