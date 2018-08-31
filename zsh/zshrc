@@ -68,8 +68,9 @@ alias o='git out'
 # raw control char for less
 alias less="less -r"
 
-# color logcat
-logcat() { python ~/.devbox/utils/colored-logcat.py $@ }
+# keep making the mistake...
+alias abd="adb"
+alias wabd="wadb"
 
 # one history per shell
 unsetopt share_history
