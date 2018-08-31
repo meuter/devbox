@@ -1,0 +1,78 @@
+#! /bin/bash
+
+progname=$(basename $0)
+android_ip_file=~/.android_ip_file
+android_ip=$(cat $android_ip_file)
+android_alive="$(adb shell echo alive 2> /dev/null)"
+color_logcat=~/.devbox/utils/colored-logcat.py
+
+command_connect()
+{
+    adb disconnect &> /dev/null
+    sleep 0.1s
+    adb connect $1
+    sleep 0.1s
+    echo $1 > $android_ip_file
+}
+
+command_reconnect()
+{
+    if [ "$android_alive" == "" ]; then
+        command_connect $android_ip
+    fi
+}
+
+command_kill_android()
+{
+    command_reconnect
+    adb shell ps | grep system_ | awk '{print $2}' | xargs adb shell kill -9
+}
+
+command_kill_worldline()
+{
+    command_reconnect
+    adb shell ps | grep com.worldline.spica | awk '{print $2}' | xargs adb shell kill
+}
+
+command_logcat()
+{
+    command_reconnect
+    python $color_logcat $@
+}
+
+command_shell()
+{
+    command_reconnect
+    adb shell
+}
+
+command=$1
+
+case $command in
+    "ka" | "kill-android")
+        command_kill_android
+        ;;
+    "kw" | "kill-worldline")
+        command_kill_worldline
+        ;;
+    "co" | "connect")
+        shift
+        command_connect $@
+        ;;
+    "re" | "reconnect")
+        command_reconnect
+        ;;
+    "ip")
+        echo $android_ip
+        ;;
+    "log" | "logcat")
+        shift
+        command_logcat $@
+        ;;
+    "sh" | "shell")
+        command_shell
+        ;;
+    *)
+        adb $@
+        ;;
+esac
