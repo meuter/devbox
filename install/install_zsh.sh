@@ -3,7 +3,7 @@
 source ./colors.sh
 
 info "Installing zsh..."
-sudo pacman -S zsh wget
+sudo pacman -S --noconfirm zsh wget
 
 info "Setting zsh as default shell for $(whoami)..."
 sudo usermod -s $(which zsh) $(whoami)
