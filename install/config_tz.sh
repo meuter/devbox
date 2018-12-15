@@ -3,7 +3,7 @@
 source ./colors.sh
 
 info "Installing tzupdate..."
-pip install tzupdate
+sudo pip2 install --user tzupdate
 
 info "Detecting timezone..."
 tz=${1:-$(~/.local/bin/tzupdate -p)}

@@ -3,10 +3,8 @@
 source ./colors.sh
 
 info "Installing core packages..."
-sudo pacman --noconfirm -S gcc make linux-headers wget curl
-#sudo apt install -y build-essential cmake neofetch python python-pip curl\
-#	            dkms linux-headers-generic linux-headers-$(uname -r)
-
+sudo pacman --noconfirm -S gcc make linux-headers wget curl python2 python2-pip\
+	                   python2-virtualenv
 
 success "Done!"
 
