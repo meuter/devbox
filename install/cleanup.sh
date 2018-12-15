@@ -6,6 +6,7 @@ rm -rf ~/.config/oh-my-zsh
 rm -rf ~/.zshrc
 rm -rf ~/.config/i3/config
 rm -rf ~/.Xresources
+rm -rf ~/.fzf
 rm -rf ~/.config/i3/bumblebee-status
 rm -rf /tmp/i3-gaps
 rm -rf /tmp/fonts
