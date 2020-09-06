@@ -3,6 +3,6 @@
     "diagnostic.errorSign": "✘",
     "diagnostic.infoSign": "ℹ",
     "diagnostic.hintSign": "➤",
-    "diagnostic.enableHighlightLineNumber": true
-
+    "diagnostic.enableHighlightLineNumber": true,
+    "clangd.semanticHighlighting":true,
 }

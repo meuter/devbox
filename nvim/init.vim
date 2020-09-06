@@ -150,11 +150,11 @@ if empty(glob(s:plugpath))
     autocmd VimEnter * PlugInstall --sync 
 endif
 
-function! s:Foo(info)
+function! s:CocAddExtensions(info)
     call coc#add_extension("coc-json", "coc-python", "coc-cmake", "coc-marketplace", "coc-clangd", "coc-vimlsp")
 endfunction
 
-let FooRef = function('s:Foo')
+let CocAddExtensionsRef = function('s:CocAddExtensions')
 
 " List of plugins
 call plug#begin('~/.config/nvim/plugged')
@@ -191,7 +191,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'caenrique/nvim-toggle-terminal'
 
     " Intellisense
-    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': FooRef }
+    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': CocAddExtensionsRef }
 call plug#end()
 
 
