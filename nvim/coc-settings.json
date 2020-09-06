@@ -4,5 +4,5 @@
     "diagnostic.infoSign": "ℹ",
     "diagnostic.hintSign": "➤",
     "diagnostic.enableHighlightLineNumber": true,
-    "clangd.semanticHighlighting":true,
+    "clangd.semanticHighlighting":true
 }
