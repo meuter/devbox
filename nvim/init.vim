@@ -150,6 +150,12 @@ if empty(glob(s:plugpath))
     autocmd VimEnter * PlugInstall --sync 
 endif
 
+function! s:Foo(info)
+    call coc#add_extension("coc-json", "coc-python", "coc-cmake", "coc-marketplace", "coc-clangd", "coc-vimlsp")
+endfunction
+
+let FooRef = function('s:Foo')
+
 " List of plugins
 call plug#begin('~/.config/nvim/plugged')
 	" File browser
@@ -185,14 +191,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'caenrique/nvim-toggle-terminal'
 
     " Intellisense
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-python'
-    Plug 'voldikss/coc-cmake'
-    Plug 'clangd/coc-clangd'
-    Plug 'iamcco/coc-vimlsp'
-
+    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': FooRef }
 call plug#end()
+
+
 
 " Automatically install missing plugins on startup
 autocmd VimEnter *
