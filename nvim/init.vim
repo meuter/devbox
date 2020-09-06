@@ -5,8 +5,12 @@
 " not in the 80's anymore
 set nocompatible
 
+" coc.vim says it's good
+set hidden
+set updatetime=300
+
 " Set relative line number, gutter always visible
-set number relativenumber signcolumn=yes
+set number signcolumn=yes
 
 " Reload files when changed behind vim's back
 set autoread
@@ -47,8 +51,9 @@ set noshowmode laststatus=2
 " Automatically reload vimrc, and refresh airline if installed
 autocmd! BufWritePost init.vim,.vimrc source % | if exists(':AirlineRefresh') | execute 'AirlineRefresh' | endif
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Misc key bindings
+" Make VIM behave more like a normal text editor
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " When switching back to Normal mode from Insert mode
@@ -57,27 +62,6 @@ inoremap <Esc> <Esc><Right>
 
 " allow to go directly from visual mode to insert mode
 xnoremap i <Esc>i
-
-" Remap leader key
-let mapleader = ","
-
-" disable highlighted search with esc in normal mode
-nnoremap <silent><esc> :nohl<cr>
-
-" ',s' to create a split
-map <leader>s :split<cr>
-
-" ',v' to create a vsplit
-map <leader>v :vsplit<cr>
-
-" ',d' to delete but not modify register
-map <leader>d "_d
-
-" Use ctrl+kj to just 5 lines at a time
-nnoremap <C-K> 10k
-nnoremap <C-j> 10j
-vnoremap <C-k> 10k
-vnoremap <C-j> 10j
 
 " indent/dedent with tab/s-tab
 vnoremap <Tab> >gv
@@ -97,10 +81,6 @@ vnoremap <c-x> d
 nmap <c-s> :w<CR>
 vmap <c-s> <Esc>:w<cr>gv
 imap <c-s> <Esc>:w<CR>i
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Text selection
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Select using shift+arrow/home/insert
 nnoremap <S-Right> v<Right>
@@ -146,41 +126,17 @@ xnoremap <Down> <Esc><Down>
 xnoremap <C-Right> <Esc>e
 xnoremap <C-left> <Esc>b
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Configure embedded terminal
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Open a terminal in current buffer using ',t'
-map <leader>t :terminal<cr>
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+inoremap <C-H> <Esc>dbi
+nnoremap <C-H> db
 
-" Open a terminal in a (horizontal) with ',ts'
-map <leader>ts :split \| terminal<cr>
-
-" Open a terminal in a vertical split with ',tv'
-map <leader>tv :vsplit \| terminal<cr>
-
-" Automatically open terminal in insert mode
-autocmd BufWinEnter,WinEnter term://* startinsert
-
-if has('nvim')
-    " terminal closes automatically when exit
-    " autocmd TermClose term://* :q!
-
-    " disable line number in terminal mode
-    autocmd TermOpen term://* startinsert | setlocal nonumber norelativenumber signcolumn=no
-endif
-
-" Escp to get out of insert mode like in any other buffer
-tnoremap <Esc> <C-\><C-n>
-
-" Automatically escapes when switching to another buffer
-tnoremap <C-w><Up> <C-\><C-n><C-w><Up>
-tnoremap <C-w><Down> <C-\><C-n><C-w><Down>
-tnoremap <C-w><Left> <C-\><C-n><C-w><Left>
-tnoremap <C-w><Right> <C-\><C-n><C-w><Right>
+" Tab keyboard shortcuts
+map <silent><C-t> :tabnew<cr>
+map <silent><C-w> :bd!<cr> 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Manager
+" Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Some local variables
@@ -191,37 +147,84 @@ let s:plugurl='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.v
 " Install vim-plug automatically on first start
 if empty(glob(s:plugpath))
     execute 'silent !curl -fLo ' . s:plugpath . ' --create-dirs ' . s:plugurl
-    autocmd VimEnter * PlugInstall
+    autocmd VimEnter * PlugInstall --sync 
 endif
 
+" List of plugins
+call plug#begin('~/.config/nvim/plugged')
+	" File browser
+	Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+	Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }
+	Plug 'vwxyutarooo/nerdtree-devicons-syntax', { 'on': 'NERDTreeToggle' }
+
+	" Make vim look for .git to root the workspace
+	Plug 'airblade/vim-rooter'
+
+	" Theme
+	Plug 'rafi/awesome-vim-colorschemes'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+
+    " VSCode srtyle command pallette
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    Plug 'junegunn/fzf.vim'
+
+    " Multiple cursor
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+    " Dim inactive windows
+    Plug 'https://github.com/blueyed/vim-diminactive.git'
+    
+    " Remember cursor position when editing a file
+    Plug 'https://github.com/farmergreg/vim-lastplace'
+    
+    " Move lines around using alt+j/k
+    Plug 'https://github.com/matze/vim-move.git'
+
+    " Toggle Terminal
+    Plug 'caenrique/nvim-toggle-terminal'
+
+    " Intellisense
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-python'
+    Plug 'voldikss/coc-cmake'
+    Plug 'clangd/coc-clangd'
+    Plug 'iamcco/coc-vimlsp'
+
+call plug#end()
+
+" Automatically install missing plugins on startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configure Nerdtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin('~/.config/nvim/plugged')
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Focus on most used filetype for efficiency
+let g:NERDTreeLimitedSyntax = 1
+
+" Toggle file explorer using Ctrl+b
+inoremap <C-b> <Esc>:NERDTreeToggle<cr>
+vnoremap <C-b> <Esc>:NERDTreeToggle<cr>
+nnoremap <C-b> :NERDTreeToggle<cr>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
+" Editor color scheme
+syntax on
+set t_Co=256i
+silent! colorscheme apprentice
+set background=dark
 
-" setting the color scheme has to be delayed after plug#end()
-function! SetColorScheme()
-    syntax on
-    set t_Co=256i
-    silent! colorscheme seoul256
-    set background=dark
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Airline - status/tab bar
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Plug 'https://github.com/vim-airline/vim-airline.git'
+" Status bar color scheme
+let g:airline_theme='bubblegum'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -254,293 +257,51 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-" Navigate tab bar
-nmap <c-w>1 <Plug>AirlineSelectTab1
-nmap <c-w>2 <Plug>AirlineSelectTab2
-nmap <c-w>3 <Plug>AirlineSelectTab3
-nmap <c-w>4 <Plug>AirlineSelectTab4
-nmap <c-w>5 <Plug>AirlineSelectTab5
-nmap <c-w>6 <Plug>AirlineSelectTab6
-nmap <c-w>7 <Plug>AirlineSelectTab7
-nmap <c-w>8 <Plug>AirlineSelectTab8
-nmap <c-w>9 <Plug>AirlineSelectTab9
-nmap <c-tab> <Plug>AirlineSelectNextTab
-nmap <c-s-tab> <Plug>AirlineSelectPrevTab
-map <silent><c-t> :tabnew<cr>
-map <silent><leader>w :bd!<cr>
-
-" Select theme for both status and tab bar
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
-let g:airline_theme='bubblegum'
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Commenting out stuff
+" Command palette
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Plug 'https://github.com/tpope/vim-commentary.git'
+noremap <silent> <C-P> <Esc>:FZF<cr>
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
-" Toggle comment using ',c'
-map <leader>c gcc
-
-" Disable auto comment insertion on newline
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Use // instead of /* */ when commenting out c code
-autocmd FileType c setlocal commentstring=\/\/\ %s
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File explorer
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Plug 'https://github.com/scrooloose/nerdtree.git', { 'on': 'NERDTreeToggle' }
-Plug 'https://github.com/ryanoasis/vim-devicons.git', { 'on': 'NERDTreeToggle' }
-Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git', { 'on': 'NERDTreeToggle' }
-
-" Focus on most used filetype for efficiency
-let g:NERDTreeLimitedSyntax = 1
-
-" Toggle file explorer using ',b'
-map <leader>b :NERDTreeToggle<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Git integration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Call git from vim
-Plug 'https://github.com/tpope/vim-fugitive.git'
-map <Leader>gd :Gvdiff<cr>
-map <Leader>gs :Gstatus<cr>
-map <Leader>gb :Gblame<cr>
-
-" Have some + and ~ in the gutter to indicate changes in a file
-Plug 'https://github.com/airblade/vim-gitgutter'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fuzzy file search
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-
-" Ctrl+p for fuzzy search ('r' means start at the .git)
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Global search and replace
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" faster async vimgrep
-Plug 'https://github.com/mileszs/ack.vim.git'
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-" Toggle quickfix (search result) with ',q' and
-" loclist (compilation errors, etc) with ',l'
-Plug 'https://github.com/Valloric/ListToggle.git'
-
-" Make the quickfix editable, e.g. before global replace
-Plug 'https://github.com/itchyny/vim-qfedit.git'
-
-function! GlobalSearch()
-    let l:search_query = input('Search: ')
-    if !empty(l:search_query)
-        exec ':Ack ' . '"' . l:search_query . '"'
-    endif
-    return l:search_query
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+ 
+  let height = float2nr(20)
+  let width = float2nr(120)
+  let horizontal = float2nr((&columns - width) / 2)
+  let vertical = 1
+ 
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': vertical,
+        \ 'col': horizontal,
+        \ 'width': width,
+        \ 'height': height,
+        \ 'style': 'minimal'
+        \ }
+ 
+  call nvim_open_win(buf, v:true, opts)
 endfunction
-
-function! GlobalReplace()
-    let l:save = winsaveview()
-    let l:search_query = GlobalSearch()
-    if !empty(l:search_query)
-        let l:replace_by = input('Replace by: ')
-        if !empty(l:replace_by)
-            try
-                exec ':cfdo %s/' . l:search_query . '/' . l:replace_by . '/gc | update'
-            finally
-                execute ':QToggle'
-                call winrestview(l:save)
-            endtry
-        endif
-    endif
-endfunction
-
-" Search throughout cwd using C-S-F
-inoremap <C-S-F> <Esc>:call GlobalSearch()<cr>
-nnoremap <C-S-F> :call GlobalSearch()<cr>
-
-" Search and replace interactive using C-S-H
-inoremap <C-S-H> <Esc>:call GlobalReplace()<cr>
-nnoremap <C-S-H> :call GlobalReplace()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Code Completion
+" Integrated Terminal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Installs/Updates YCM
-function! BuildYCM(info)
-    " info is a dictionary with 3 fields
-    " - name:   name of the plugin
-    " - status: 'installed', 'updated', or 'unchanged'
-    " - force:  set on PlugInstall! or PlugUpdate!
-    if a:info.status == 'installed' || a:info.force
-        !./install.py --clang-completer
-    endif
-endfunction
-
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-
-" Configure YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.devbox/nvim/.ycm_extra_conf.py'
-let g:ycm_auto_trigger = 1
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_open_loclist_on_ycm_diags = 1 "default 1P
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_min_num_of_chars_for_completion=2
-let g:ycm_semantic_triggers = {
-	\   'python': [ 're!\w{2}' ],
-	\   'c': [ 're!\w{2}' ]
-	\ }
-
-" <Enter> to confirm completion
-set completeopt=menuone,preview,noinsert
-function! ConfirmCompletion()
-    if pumvisible()
-        if !empty(v:completed_item)
-            return "\<Esc>a"
-        else
-            return "\<c-n>\<Esc>a"
-        endif
-    else
-        return "\<cr>"
-    endif
-endf
-inoremap <expr> <cr> ConfirmCompletion()
-
-" Configure completion pop
-set pumheight=10
-highlight Pmenu ctermbg=white
-
-" Goto declaration + jump to file with <leader>j
-nnoremap <silent> <leader>j :YcmCompleter GoTo<CR>
-inoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
-vnoremap <silent> <leader>j <Esc>:YcmCompleter GoTo<CR>
-
-nnoremap <silent> <leader>x :YcmCompleter FixIt<CR>
-inoremap <silent> <leader>x <Esc>:YcmCompleter FixIt<CR>
-vnoremap <silent> <leader>x <Esc>:YcmCompleter FixIt<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Code navigation
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Update ctags automagically
-Plug 'https://github.com/xolox/vim-misc'
-Plug 'https://github.com/xolox/vim-easytags.git'
-
-" Navigation bar on the side (open with ',n'
-Plug 'https://github.com/majutsushi/tagbar.git'
-map <silent> <leader>n :TagbarOpenAutoClose<cr>
-let g:tagbar_autofocus = 1
-let g:tagbar_left = 1
-let g:easytags_async = 1
-
-" Switch from .h to .c and vice versa using ',o'
-Plug 'https://github.com/ericcurtin/CurtineIncSw.vim'
-map <leader>o :call CurtineIncSw()<cr>
-
-" Goto tag (+/- goto declaration)
-map <silent> <leader>k <c-]>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Miscelaneous
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Dim inactive windows
-Plug 'https://github.com/blueyed/vim-diminactive.git'
-
-" Remember cursor position when editing a file
-Plug 'https://github.com/farmergreg/vim-lastplace'
-
-" Move lines around using alt+j/k
-Plug 'https://github.com/matze/vim-move.git'
-
-" Zoom on current buffer using <c-w> <c-o>
-Plug 'https://github.com/troydm/zoomwintab.vim.git'
-
-" Multiple cursors (ctrl+n / ctrl+p then c to change)
-Plug 'https://github.com/terryma/vim-multiple-cursors.git'
-
-" Autoformat code with ',f'
-Plug 'https://github.com/Chiel92/vim-autoformat.git'
-map <leader>f :Autoformat<cr>
-
-" Language pack
-Plug 'https://github.com/sheerun/vim-polyglot.git'
-
-" Syntax checker
-Plug 'https://github.com/vim-syntastic/syntastic.git'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+" Ctrl+j toggle terminal
+nnoremap <silent> <C-j> :ToggleTerminal<cr>
+inoremap <silent> <C-j> <Esc>:ToggleTerminal<cr>
+tnoremap <silent> <C-j> <C-\><C-n>:ToggleTerminal<cr>
+  
+" esc to normal mode
+" tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+set autowriteall
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Build using make
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Allow to call :Make to spawn the build in a background terminal (tmux, iterm, etc).
-Plug 'https://github.com/tpope/vim-dispatch'
-
-" Allow to use the neovim built-in terminal on top of dispatch.
-Plug 'https://github.com/radenling/vim-dispatch-neovim.git'
-
-map <F17> :make test -s \| copen <cr><cr>G
-map <F7> :make -s \| copen <cr><cr>G
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#end()
-call SetColorScheme() " should happen after plug#end()
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Code completion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Handling trailing whitespace
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! TrimWhitespaceCurrentLine()
-    let l:save = winsaveview()
-    s/\s\+$//eg
-    call winrestview(l:save)
-endfunction
-
-function! TrimWhitespaceCurrentFile()
-    let l:save = winsaveview()
-    %s/\s\+$//eg
-    call winrestview(l:save)
-endfunction
-
-" ',tr' to trim whitespace
-
-nmap <silent> <leader>tr :call TrimWhitespaceCurrentLine()<cr>
-
-" ',tra' to trim whitespace in all file
-nmap <silent> <leader>tra :call TrimWhitespaceCurrentFile()<cr>
-
-" Highlight itrailing whitespace
-syntax on
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-
-
+" ctrl+space for code completion
+inoremap <silent><expr> <c-space> coc#refresh()
+map <F12> <Plug>(coc-definition)
