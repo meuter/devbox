@@ -38,6 +38,9 @@ vmap <3-LeftMouse> <3-LeftMouse>"*ygv
 " Use 4x spaces for tabs...
 set expandtab smarttab shiftwidth=4 tabstop=4
 
+" Automatically indent
+set smartindent
+
 " ...except for Makefiles
 filetype plugin indent on
 autocmd FileType make setlocal noexpandtab
