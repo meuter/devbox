@@ -41,6 +41,10 @@ set expandtab smarttab shiftwidth=4 tabstop=4
 " Automatically indent
 set smartindent
 
+" Store undo persistently
+set undodir="~/.config/nvim/undo"
+set undofile
+
 " ...except for Makefiles
 filetype plugin indent on
 autocmd FileType make setlocal noexpandtab
