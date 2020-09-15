@@ -10,6 +10,7 @@ set hidden                                            " hide buffer when switchi
 set mouse=a                                           " mouse integration
 set updatetime=300                                    " improve responsiveness
 set pastetoggle=<F2>                                  " toggle paste mode using <F2>
+set nofoldenable    								  " disable folding
 
 " Esc-Esc to remove highlight
 nnoremap <esc><esc> :silent! nohls<cr>
@@ -72,7 +73,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theming
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call s:AddPlug('tomasiser/vim-code-dark', { 'init': 'colorscheme codedark'})
+call s:AddPlug('tomasiser/vim-code-dark', { 'init' : 'colorscheme codedark'})
 call s:AddPlug('vim-airline/vim-airline', { 'init' : ':AirlineRefresh' })
 
 " Editor color scheme
@@ -97,13 +98,19 @@ let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#hunks#enabled=0 
 let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.paste = '(paste)'
+let g:airline_symbols.paste = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-let g:airline_section_error = ''
-let g:airline_section_warning = ''
+
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'd', 'b', 'c' ],
+    \ [ 'x', 'y', 'z' ]
+    \ ]
+
+let g:airline_section_d = ' %{substitute(getcwd(), $HOME, "~", "")}'
 
 " Config for the tab
 let g:airline#extensions#tabline#enabled = 1
@@ -129,6 +136,23 @@ vnoremap <silent> <C-b> <C-\><C-n>:NERDTreeToggle<cr>
 tnoremap <silent> <C-b> <C-\><C-n>:NERDTreeToggle<cr>
 nnoremap <silent> <C-b> :NERDTreeToggle<cr>
 
+" Allow ctrl+j to open neoterm even when NERDTree is focussed
+function! NERDTreeToggleTerminal()
+    execute ":Ttoggle"
+endfunction
+
+function! NERDTreeCustomKeyBindings()
+    try
+        call NERDTreeAddKeyMap({
+          \ 'key': '<C-J>',
+          \ 'callback': 'NERDTreeToggleTerminal',
+          \ 'quickhelpText': 'toggle embedded terminal' })
+    catch
+    endtry
+endfunction
+
+autocmd VimEnter * call NERDTreeCustomKeyBindings()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Embedded Terminal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -137,9 +161,7 @@ call s:AddPlug('kassio/neoterm')
 let g:neoterm_default_mod="botright"
 let g:neoterm_autoinsert=1
 
-set autochdir
-
-nnoremap <silent> <C-J> :Ttoggle<CR>cd -<CR>
+nnoremap <silent> <C-J> :Ttoggle<CR>
 inoremap <silent> <C-J> <C-\><C-N>:Ttoggle<CR>
 vnoremap <silent> <C-J> <C-\><C-N>:Ttoggle<CR>
 tnoremap <silent> <C-J> <C-\><C-N>:Ttoggle<CR>
@@ -218,7 +240,7 @@ map <silent> <F12> <Plug>(coc-definition)
 call s:AddPlug('tpope/vim-fugitive')
 call s:AddPlug('mhinz/vim-signify')
 
-" ctrl+n to toggle the git status window
+" ctrl+g to toggle the git status window
 nnoremap <silent><C-G> :botright Git<CR>
 autocmd FileType fugitive nmap <silent><buffer> <C-G> :q<CR>
 
@@ -254,9 +276,6 @@ call s:AddPlug('terryma/vim-multiple-cursors')
 
 " move lines with alt+j/k
 call s:AddPlug('matze/vim-move')
-
-" automatically cd into the .git folder
-call s:AddPlug('airblade/vim-rooter')
 
 " Remember cursor position when editing a file
 call s:AddPlug('https://github.com/farmergreg/vim-lastplace')
